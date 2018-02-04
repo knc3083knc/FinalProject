@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    >
+
+    <Button
+        android:id="@+id/Thai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ภาษาไทย"
+        android:textSize="50dp"
+        />
+    <Button
+        android:id="@+id/Eng"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="English"
+        android:textSize="50dp"/>
+    <Button
+        android:id="@+id/back"
+        android:layout_width="330dp"
+        android:layout_height="100dp"
+        android:background="@android:color/holo_red_light"
+        android:text="กลับ"
+        android:textColor="?attr/colorBackgroundFloating"
+        android:textSize="30sp"
+        />
+
+
+</LinearLayout>

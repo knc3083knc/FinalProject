@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:layout_weight="0.92" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.07"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="301dp">
+
+        <Button
+            android:id="@+id/confirm"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:text="ยืนยัน"
+            android:textSize="30sp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="42dp" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:text="บันทึกใหม่"
+            android:textSize="30sp"
+            app:layout_constraintLeft_toRightOf="@+id/confirm"
+            tools:layout_editor_absoluteY="42dp"
+            android:layout_marginLeft="0dp" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>
