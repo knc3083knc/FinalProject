@@ -31,7 +31,7 @@
             android:layout_height="80dp"
             android:layout_marginBottom="8dp"
             android:background="@android:color/holo_blue_light"
-            android:text="สั่งงานด้วยเสียง"
+            android:text="@string/voice"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

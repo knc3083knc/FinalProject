@@ -40,7 +40,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:background="@android:color/holo_blue_light"
-            android:text="สั่งงานด้วยเสียง"
+            android:text="@string/voice"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

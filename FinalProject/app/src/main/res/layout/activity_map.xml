@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_weight=".5"
-            android:text="สั่งงานด้วยเสียง"
+            android:text="@string/voice"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
             tools:layout_editor_absoluteX="16dp" />
 
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_weight=".5"
-            android:text="เลือกจุดหมาย"
+            android:text="@string/dest"
             app:layout_constraintLeft_toRightOf="@+id/btn1"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 

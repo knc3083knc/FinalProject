@@ -33,10 +33,10 @@ android:weightSum="1">
     <Button
         android:id="@+id/stopRecBtn"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_weight=".5"
         android:textSize="40dp"
-        android:text="เริ่มการบันทึก"
+        android:text="@string/record"
         android:background="@android:color/holo_blue_light"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="42dp" />
@@ -44,11 +44,11 @@ android:weightSum="1">
     <Button
         android:id="@+id/cancel"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_weight=".5"
 
         android:textSize="40dp"
-        android:text="ยกเลิก"
+        android:text="@string/cancel"
         android:background="@android:color/holo_red_light"
         app:layout_constraintLeft_toRightOf="@+id/stopRecBtn"
         tools:layout_editor_absoluteY="42dp"

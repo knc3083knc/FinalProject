@@ -36,7 +36,7 @@
             android:layout_height="60dp"
             android:layout_marginLeft="16dp"
             android:layout_weight=".5"
-            android:text="สั่งงานด้วยเสียง"
+            android:text="@string/voice"
             android:textSize="18sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -46,7 +46,7 @@
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_weight=".5"
-            android:text="เลือกจุดหมาย"
+            android:text="@string/dest"
             android:textSize="20sp"
             app:layout_constraintLeft_toRightOf="@+id/btn1"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />

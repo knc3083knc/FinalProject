@@ -35,21 +35,22 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
-            android:text="ยืนยัน"
+            android:text="@string/confirm"
             android:textSize="30sp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="42dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="7dp" />
 
         <Button
             android:id="@+id/cancel"
-            android:layout_width="200dp"
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
-            android:text="บันทึกใหม่"
+            android:text="@string/nrecord"
             android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/confirm"
-            tools:layout_editor_absoluteY="42dp"
-            android:layout_marginLeft="0dp" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 

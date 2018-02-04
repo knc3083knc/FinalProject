@@ -22,7 +22,7 @@
             android:layout_marginTop="32dp"
             android:layout_weight="1"
             android:background="@android:color/holo_red_light"
-            android:text="หยุดการนำทาง"
+            android:text="@string/stop"
             android:textColor="?attr/colorBackgroundFloating"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -39,7 +39,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="30dp"
             android:layout_weight="1"
-            android:text="กำลังหาทิศทาง"
+            android:text="@string/angle"
             android:textSize="30sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/distance" />
@@ -52,7 +52,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="28dp"
             android:layout_weight="1"
-            android:text="ระยะที่เหลือ / ระยะทั้งหมด"
+            android:text="@string/m"
             android:textSize="30sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/destination" />
@@ -65,7 +65,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="30dp"
             android:layout_weight="1"
-            android:text="ชื่อจุดหมาย"
+            android:text="@string/destination"
             android:textSize="30sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nearBy" />
@@ -78,7 +78,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
-            android:text="กำลังหาสถานที่ใกล้เคียง"
+            android:text="@string/near"
             android:textSize="30sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

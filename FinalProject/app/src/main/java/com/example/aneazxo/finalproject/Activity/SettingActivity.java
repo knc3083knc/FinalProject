@@ -49,7 +49,7 @@ public class SettingActivity extends AppCompatActivity {
 
         settingList = (ListView) findViewById(R.id.settingList);
         toMain = (Button) findViewById(R.id.back);
-
+        String about = getString(R.string.about);
         initAdapter();
 
         settingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -64,18 +64,32 @@ public class SettingActivity extends AppCompatActivity {
                         CheckBluetoothState();
                         initAdapter();
                         break;
+                    case "Using BlueTooth GPS":
+                        btAdapter = BluetoothAdapter.getDefaultAdapter();
+                        CheckBluetoothState();
+                        initAdapter();
+                        break;
                     case "ไม่ใช้อุปกรณ์เสริม":
                         setting(Tool.DEVICE_KEY, 0);
                         initAdapter();
                         break;
-                    case "ภาษา":
+                    case "Not Using BlueTooth GPS":
+                        setting(Tool.DEVICE_KEY, 0);
+                        initAdapter();
+                        break;
+                    /*case "ภาษา":
                         Intent LanguageActivity = new Intent(SettingActivity.this, LanguageActivity.class);
                         startActivity(LanguageActivity);
                         finish();
-                        break;
+                        break;*/
                     case "โหมดแผนที่":
                         Intent MapActivity = new Intent(SettingActivity.this, MapActivity.class);
                         startActivity(MapActivity);
+                        finish();
+                        break;
+                    case "Map Mode":
+                        Intent MapActivity1 = new Intent(SettingActivity.this, MapActivity.class);
+                        startActivity(MapActivity1);
                         finish();
                         break;
                     case "โหมดกล้อง":
@@ -83,14 +97,29 @@ public class SettingActivity extends AppCompatActivity {
                         startActivity(CameraModeActivity);
                         finish();
                         break;
-                    case "เปิด/ปิด talkback":
+                    case "Camera Mode":
+                        Intent CameraModeActivity1 = new Intent(SettingActivity.this, CameraModeActivity.class);
+                        startActivity(CameraModeActivity1);
+                        finish();
+                        break;
+                    case "เปิด/ปิด Talkback":
                         Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
                         startActivity(intent);
+                        //finish();
+                        break;
+                    case "Open/Close Talkback":
+                        Intent intent1 = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+                        startActivity(intent1);
                         //finish();
                         break;
                     case "เกี่ยวกับ":
                         Intent about = new Intent(SettingActivity.this, AboutActivity.class);
                         startActivity(about);
+                        finish();
+                        break;
+                    case "About":
+                        Intent About = new Intent(SettingActivity.this, AboutActivity.class);
+                        startActivity(About);
                         finish();
                         break;
 
@@ -114,16 +143,17 @@ public class SettingActivity extends AppCompatActivity {
     public void initAdapter () {
         getSettingInfo();
         ArrayList<String> valuesList = new ArrayList<>();
-        valuesList.add("เปิด/ปิด talkback");
-        valuesList.add("การระบุทิศทาง");
+        valuesList.add(getString(R.string.talkback));
+        valuesList.add(getString(R.string.pathing));
         /*valuesList.add("ภาษา");*/
+
         if (deviceSelected == 0)
-            valuesList.add("ใช้อุปกรณ์เสริม");
+            valuesList.add(getString(R.string.btgps));
         else
-            valuesList.add("ไม่ใช้อุปกรณ์เสริม");
-        valuesList.add("โหมดแผนที่");
-        valuesList.add("โหมดกล้อง");
-        valuesList.add("เกี่ยวกับ");
+            valuesList.add(getString(R.string.nbtgps));
+        valuesList.add(getString(R.string.map));
+        valuesList.add(getString(R.string.camera));
+        valuesList.add(getString(R.string.about));
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(SettingActivity.this, android.R.layout.simple_list_item_1, android.R.id.text1, valuesList);
 
         settingList.setAdapter(adapter);

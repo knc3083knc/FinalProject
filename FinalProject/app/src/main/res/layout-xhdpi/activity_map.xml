@@ -34,21 +34,20 @@
             android:id="@+id/btn1"
             android:layout_width="200dp"
             android:layout_height="60dp"
-            android:layout_marginTop="8dp"
+
             android:layout_weight=".5"
-            android:text="สั่งงานด้วยเสียง"
+            android:text="@string/voice"
             android:textSize="30sp"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
-            tools:layout_editor_absoluteX="16dp" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <Button
             android:id="@+id/btn2"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_height="60dp"
             android:layout_weight=".5"
+            android:text="@string/dest"
             android:textSize="30sp"
-            android:text="เลือกจุดหมาย"
             app:layout_constraintLeft_toRightOf="@+id/btn1"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 

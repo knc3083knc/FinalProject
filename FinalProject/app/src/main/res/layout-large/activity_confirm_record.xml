@@ -35,7 +35,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
-            android:text="ยืนยัน"
+            android:text="@string/confirm"
             android:textSize="40dp"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="42dp" />
@@ -45,7 +45,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
-            android:text="บันทึกใหม่"
+            android:text="@string/nrecord"
             android:textSize="40dp"
             app:layout_constraintLeft_toRightOf="@+id/confirm"
             tools:layout_editor_absoluteY="42dp"
