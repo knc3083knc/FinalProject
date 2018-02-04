@@ -41,7 +41,6 @@ public class SettingActivity extends AppCompatActivity {
     private BluetoothDevice device;
     private boolean isCheckBluetooth = false;
     private int deviceSelected = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +68,11 @@ public class SettingActivity extends AppCompatActivity {
                         setting(Tool.DEVICE_KEY, 0);
                         initAdapter();
                         break;
+                    case "ภาษา":
+                        Intent LanguageActivity = new Intent(SettingActivity.this, LanguageActivity.class);
+                        startActivity(LanguageActivity);
+                        finish();
+                        break;
                     case "โหมดแผนที่":
                         Intent MapActivity = new Intent(SettingActivity.this, MapActivity.class);
                         startActivity(MapActivity);
@@ -89,6 +93,7 @@ public class SettingActivity extends AppCompatActivity {
                         startActivity(about);
                         finish();
                         break;
+
                 }
             }
 
@@ -111,7 +116,7 @@ public class SettingActivity extends AppCompatActivity {
         ArrayList<String> valuesList = new ArrayList<>();
         valuesList.add("เปิด/ปิด talkback");
         valuesList.add("การระบุทิศทาง");
-        valuesList.add("ภาษา");
+        /*valuesList.add("ภาษา");*/
         if (deviceSelected == 0)
             valuesList.add("ใช้อุปกรณ์เสริม");
         else

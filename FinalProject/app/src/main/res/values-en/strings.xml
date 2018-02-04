@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nav">Navigation</string>
+    <string name="rec">Record Path</string>
+    <string name="settings">Setting</string>
+    <string name="delete">Delete Path</string>
+</resources>

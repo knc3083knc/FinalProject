@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nav">นำทาง</string>
+    <string name="rec">บันทึกเส้นทาง</string>
+    <string name="settings">ตั้งค่า</string>
+    <string name="delete">ลบเส้นทาง</string>
+</resources>

@@ -39,6 +39,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -95,6 +96,11 @@
         <activity android:name=".Activity.ConfirmRecordActivity"
             android:label="หน้ายืนยันการบันทึกเส้นทาง"
             android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.LanguageActivity"
+            android:label="หน้าเปลี่ยนภาษา"
+            android:screenOrientation="portrait"
+            android:configChanges="locale|orientation"/>
+
     </application>
 
 </manifest>

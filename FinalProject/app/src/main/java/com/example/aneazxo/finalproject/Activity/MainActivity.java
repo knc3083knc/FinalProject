@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
+    SharedPreferences prefs = null;
     final private int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 001;
     private Button nav;
     private Button rec;
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //getSupportActionBar().setDisplayShowTitleEnabled(false);
-
+        prefs = getSharedPreferences("com.example.aneazxo.finalproject", MODE_PRIVATE);
         nav = (Button) findViewById(R.id.navBtn);
         rec = (Button) findViewById(R.id.recBtn);
         setting = (Button) findViewById(R.id.settingฺBtn);
@@ -66,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle == null) { // speak only the first time
             checkTalkbackEnable();
-            notification(Tool.msgWelcome);
             Log.d(TAG, "cleanDatabaseFile(if): start");
             Tool.cleanDatabaseFile();
             Log.d(TAG, "cleanDatabaseFile(if): end");
@@ -124,6 +125,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         showDialog();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (prefs.getBoolean("firstrun", true)) {
+            notification(Tool.msgWelcome);
+            prefs.edit().putBoolean("firstrun", false).commit();
+        }
     }
 
     private void checkPointdata() {
