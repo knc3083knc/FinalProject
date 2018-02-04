@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.aneazxo.finalproject">
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="10" />
+
+    <!-- Normal Permission -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- Runtime Permission -->
+    <!-- Location Group -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- Camera Group -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- Storage Group -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- Phone Group -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- Uses Feature -->
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <!-- bluetooth for garmin glo -->
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity android:name=".Activity.MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity.NavCamEnActivity"
+            android:label="หน้านำทาง"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.MapActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.CameraModeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.NavCamDisActivity"
+            android:label="หน้านำทาง"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.SelectDesActivity"
+            android:label="หน้าเลือกจุดหมาย"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.CamOptionActivity"
+            android:label="หน้าเลือกการตรวจจับวัตถุ"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.RecordActivity"
+            android:label="หน้าเลือกการบันทึก"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.RecControlActivity"
+            android:label="กำลังบันทึกเส้นทาง"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.ConfirmActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.DeleteActivity"
+            android:label="หน้าลบเส้นทาง"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.SettingActivity"
+            android:label="หน้าตั้งค่า"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Activity.AboutActivity"
+            android:label="เกี่ยวกับ"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Activity.ConfirmRecordActivity"
+            android:label="หน้ายืนยันการบันทึกเส้นทาง"
+            android:screenOrientation="portrait"/>
+    </application>
+
+</manifest>

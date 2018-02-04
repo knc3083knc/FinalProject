@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.aneazxo.finalproject.Activity.MainActivity"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <Button
+            android:id="@+id/delBtn"
+            android:layout_width="172dp"
+            android:layout_height="140dp"
+            android:background="@android:color/holo_blue_light"
+            android:text="ลบเส้นทาง"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/settingฺBtn"
+            app:layout_constraintTop_toBottomOf="@+id/navBtn" />
+
+        <Button
+            android:id="@+id/settingฺBtn"
+            android:layout_width="172dp"
+            android:layout_height="140dp"
+            android:background="@android:color/holo_blue_light"
+            android:text="ตั้งค่า"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/delBtn"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recBtn" />
+
+        <Button
+            android:id="@+id/recBtn"
+            android:layout_width="172dp"
+            android:layout_height="140dp"
+            android:background="@android:color/holo_blue_light"
+            android:text="บันทึกเส้นทาง"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/settingฺBtn"
+            app:layout_constraintLeft_toRightOf="@+id/navBtn"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/navBtn"
+            android:layout_width="172dp"
+            android:layout_height="140dp"
+            android:background="@android:color/holo_blue_light"
+            android:text="นำทาง"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/delBtn"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/recBtn"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>
