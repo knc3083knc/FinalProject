@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.aneazxo.finalproject.Activity.MainActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="81dp">
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <Button
+        android:id="@+id/delBtn"
+        android:layout_width="160dp"
+        android:layout_height="120dp"
+        android:background="@android:color/holo_purple"
+        android:text="@string/delete"
+        android:textColor="@color/cast_expanded_controller_text_color"
+        android:textSize="10sp"
+        android:visibility="visible"
+        app:layout_constraintLeft_toRightOf="@id/guideline13"
+        app:layout_constraintTop_toBottomOf="parent" />
+
+    <Button
+        android:id="@+id/settingฺBtn"
+        android:layout_width="160dp"
+        android:layout_height="120dp"
+        android:background="@android:color/holo_orange_light"
+        android:text="@string/settings"
+        android:textColor="@color/cast_expanded_controller_text_color"
+        android:textSize="10sp"
+        app:layout_constraintRight_toLeftOf="@id/guideline13"
+        app:layout_constraintTop_toBottomOf="parent" />
+
+    <Button
+        android:id="@+id/recBtn"
+        android:layout_width="160dp"
+        android:layout_height="280dp"
+        android:background="@android:color/holo_blue_light"
+        android:text="@string/rec"
+        android:textColor="@color/cast_expanded_controller_text_color"
+        android:textSize="10sp"
+        app:layout_constraintLeft_toRightOf="@id/guideline13"
+        app:layout_constraintTop_toBottomOf="@id/guideline" />
+
+    <Button
+        android:id="@+id/navBtn"
+        android:layout_width="160dp"
+        android:layout_height="280dp"
+        android:background="@android:color/holo_red_light"
+        android:text="@string/nav"
+        android:textColor="@color/cast_expanded_controller_text_color"
+        android:textSize="10sp"
+        app:layout_constraintRight_toLeftOf="@id/guideline13"
+        app:layout_constraintTop_toBottomOf="@id/guideline" />
+
+
+
+
+
+
+
+</android.support.constraint.ConstraintLayout>
+
+
