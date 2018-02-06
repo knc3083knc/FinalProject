@@ -9,21 +9,22 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="400dp"
         android:layout_height="580dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <Button
             android:id="@+id/stopNavBtn"
             android:layout_width="350dp"
-            android:layout_height="150dp"
-            android:layout_marginLeft="8dp"
+            android:layout_height="100dp"
+
             android:layout_marginRight="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="12dp"
             android:layout_weight="1"
             android:background="@android:color/holo_red_light"
             android:text="@string/stop"
             android:textColor="?attr/colorBackgroundFloating"
             android:textSize="20sp"
+            app:layout_constraintHorizontal_bias="0.38"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/preview" />
@@ -32,8 +33,7 @@
             android:id="@+id/preview"
             android:layout_width="200dp"
             android:layout_height="100dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="84dp"
+            android:layout_marginTop="68dp"
             android:layout_weight="1"
             app:layout_constraintRight_toRightOf="@+id/stopNavBtn"
             app:layout_constraintTop_toBottomOf="@+id/distance" />
@@ -48,9 +48,9 @@
             android:layout_weight="1"
             android:text="@string/angle"
             android:textSize="30sp"
-            tools:layout_editor_absoluteX="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/distance"
 
-            app:layout_constraintTop_toBottomOf="@+id/distance" />
+            tools:layout_editor_absoluteX="16dp" />
 
         <TextView
             android:id="@+id/distance"
@@ -62,8 +62,8 @@
             android:layout_weight="1"
             android:text="@string/m"
             android:textSize="30sp"
-            app:layout_constraintTop_toBottomOf="@+id/destination"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/destination" />
 
         <TextView
             android:id="@+id/destination"
@@ -75,8 +75,8 @@
             android:layout_weight="1"
             android:text="@string/destination"
             android:textSize="30sp"
-            app:layout_constraintTop_toBottomOf="@+id/nearBy"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nearBy" />
 
         <TextView
             android:id="@+id/nearBy"
@@ -88,7 +88,7 @@
             android:layout_weight="1"
             android:text="@string/near"
             android:textSize="30sp"
-            tools:layout_editor_absoluteY="16dp"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            tools:layout_editor_absoluteY="16dp" />
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

@@ -345,7 +345,7 @@ public class MainActivity extends AppCompatActivity {
         final TextView message = (TextView) dialog.findViewById(R.id.txt_dia);
         Button buttonConfirm = (Button) dialog.findViewById(R.id.btn_yes);
         Button buttonCancel = (Button) dialog.findViewById(R.id.btn_no);
-        message.setText("ต้องการออกจากโปรแกรมหรือไม่");
+        message.setText(getString(R.string.exit));
 
         buttonConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -388,7 +388,7 @@ public class MainActivity extends AppCompatActivity {
             final TextView message = (TextView) dialog.findViewById(R.id.txt_dia);
             Button buttonConfirm = (Button) dialog.findViewById(R.id.btn_yes);
             Button buttonCancel = (Button) dialog.findViewById(R.id.btn_no);
-            message.setText("Talkback ไม่ได้เปิด ต้องการเปิดหรือไม่, หากเลือกไม่ใช่จะออกจากโปรแกรม");
+            message.setText(getString(R.string.entalk));
 
             buttonConfirm.setOnClickListener(new View.OnClickListener() {
                 @Override

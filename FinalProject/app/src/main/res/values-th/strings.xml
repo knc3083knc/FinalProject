@@ -28,4 +28,8 @@
     <string name="keyboard">สั่งงานด้วยคีย์บอร์ด</string>
     <string name="yes">ใช่</string>
     <string name="no">ไม่ใช่</string>
+    <string name="exit">คุณต้องการออกจากโปรแกรมนี้ใช่หรือไม่</string>
+    <string name="entalk">คุณต้องการเปิด Talkback หรือไม่,ถ้าเลือกไม่ใช่โปรแกรมจะปิดการทำงาน</string>
+    <string name="location1">ท่านยังไม่ได้เปิด location ต้องการไปที่การตั้งค่าและเปิด location หรือไม่</string>
+    <string name="record1">ท่านต้องการไปที่หน้าบันทึกเส้นทางใช่หรือไม่</string>
 </resources>

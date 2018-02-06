@@ -143,7 +143,7 @@ public class SelectDesActivity extends AppCompatActivity {
         final TextView message = (TextView) dialog.findViewById(R.id.txt_dia);
         Button buttonConfirm = (Button) dialog.findViewById(R.id.btn_yes);
         Button buttonCancel = (Button) dialog.findViewById(R.id.btn_no);
-        message.setText("ต้องการไปที่, บันทึกเส้นทางใช่หรือไม่");
+        message.setText(getString(R.string.record1));
 
         buttonConfirm.setOnClickListener(new View.OnClickListener() {
             @Override

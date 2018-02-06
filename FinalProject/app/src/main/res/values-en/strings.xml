@@ -28,4 +28,8 @@
     <string name="keyboard">Keyboard Action</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="exit">Do you want to exit NavTU</string>
+    <string name="entalk">Do you want to enable Talkback? if not program will terminate.</string>
+    <string name="location1">You not enable GPS,Do you want to enable GPS?</string>
+    <string name="record1">Do you want go to Record Path first?</string>
 </resources>
