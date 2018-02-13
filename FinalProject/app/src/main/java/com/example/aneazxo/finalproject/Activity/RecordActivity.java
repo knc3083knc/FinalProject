@@ -166,7 +166,7 @@ public class RecordActivity extends AppCompatActivity {
         final TextView message = (TextView) dialog.findViewById(R.id.txt_dia);
         Button buttonConfirm = (Button) dialog.findViewById(R.id.btn_yes);
         Button buttonCancel = (Button) dialog.findViewById(R.id.btn_no);
-        message.setText("ท่านยังไม่ได้เปิด Location ต้องการไปที่ตั่งค่าเพื่อเปิด Location หรือไม่");
+        message.setText(getString(R.string.location1));
 
         buttonConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
