@@ -12,18 +12,20 @@
         android:id="@+id/pointList"
         android:layout_width="400dp"
         android:layout_height="380dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="8dp" />
-
+        android:layout_marginTop="4dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="400dp"
-        android:layout_height="100dp"
+        android:layout_height="102dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/pointList"
-        tools:layout_editor_absoluteX="8dp">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pointList">
 
         <Button
             android:id="@+id/ptt"
@@ -34,7 +36,7 @@
             android:text="@string/voice"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.32"
+            app:layout_constraintHorizontal_bias="0.14"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 

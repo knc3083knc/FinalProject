@@ -39,7 +39,7 @@ android:weightSum="1">
             android:background="@android:color/holo_blue_light"
             android:text="@string/record"
             android:textSize="30sp"
-            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="42dp" />
 
         <Button

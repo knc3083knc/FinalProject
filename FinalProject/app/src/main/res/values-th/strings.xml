@@ -28,4 +28,10 @@
     <string name="keyboard">สั่งงานด้วยคีย์บอร์ด</string>
     <string name="yes">ใช่</string>
     <string name="no">ไม่ใช่</string>
+    <string name="camoption">หน้าเลือกการตรวจจับวัตถุ</string>
+    <string name="deleteoption">หน้าลบเส้นทาง</string>
+    <string name="navigation">หน้านำทาง</string>
+    <string name="recordact">หน้าเลือกการบันทึก</string>
+    <string name="seldest">หน้าเลือกจุดหมาย</string>
+    <string name="setting">หน้าตั้งค่า</string>
 </resources>

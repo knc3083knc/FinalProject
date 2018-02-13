@@ -10,22 +10,22 @@
         android:id="@+id/constraintLayout2"
         android:layout_width="400dp"
         android:layout_height="580dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        android:layout_marginRight="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteY="0dp">
 
         <Button
             android:id="@+id/disableCamBtn"
             android:layout_width="320dp"
             android:layout_height="150dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
+
             android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="48dp"
             android:background="@android:color/holo_red_light"
-            android:text="@string/detect"
+            android:text="@string/ndetect"
             android:textColor="?attr/colorBackgroundFloating"
             android:textSize="30sp"
+            app:layout_constraintHorizontal_bias="0.708"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/enableCamBtn" />
@@ -34,14 +34,12 @@
             android:id="@+id/enableCamBtn"
             android:layout_width="320dp"
             android:layout_height="150dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="51dp"
+            android:layout_marginTop="52dp"
             android:background="@android:color/holo_green_light"
-            android:text="@string/ndetect"
+            android:text="@string/detect"
             android:textSize="30sp"
+            app:layout_constraintHorizontal_bias="0.708"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

@@ -16,27 +16,26 @@
             android:id="@+id/stopNavBtn"
             android:layout_width="350dp"
             android:layout_height="150dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="32dp"
+
+
             android:layout_weight="1"
             android:background="@android:color/holo_red_light"
             android:text="@string/stop"
             android:textColor="?attr/colorBackgroundFloating"
             android:textSize="20sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/preview" />
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="318dp" />
 
         <SurfaceView
             android:id="@+id/preview"
             android:layout_width="200dp"
             android:layout_height="100dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="84dp"
+
             android:layout_weight="1"
-            app:layout_constraintRight_toRightOf="@+id/stopNavBtn"
-            app:layout_constraintTop_toBottomOf="@+id/distance" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.425"
+            tools:layout_editor_absoluteX="172dp" />
 
         <TextView
             android:id="@+id/direction"

@@ -61,23 +61,23 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.NavCamEnActivity"
-            android:label="หน้านำทาง"
+            android:label="@string/navigation"
             android:screenOrientation="portrait"/>
         <activity android:name=".Activity.MapActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".Activity.CameraModeActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".Activity.NavCamDisActivity"
-            android:label="หน้านำทาง"
+            android:label="@string/navigation"
             android:screenOrientation="portrait"/>
         <activity android:name=".Activity.SelectDesActivity"
-            android:label="หน้าเลือกจุดหมาย"
+            android:label="@string/seldest"
             android:screenOrientation="portrait"/>
         <activity android:name=".Activity.CamOptionActivity"
-            android:label="หน้าเลือกการตรวจจับวัตถุ"
+            android:label="@string/camoption"
             android:screenOrientation="portrait"/>
         <activity android:name=".Activity.RecordActivity"
-            android:label="หน้าเลือกการบันทึก"
+            android:label="@string/recordact"
             android:screenOrientation="portrait"/>
         <activity android:name=".Activity.RecControlActivity"
             android:label="กำลังบันทึกเส้นทาง"
@@ -85,10 +85,10 @@
         <activity android:name=".Activity.ConfirmActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".Activity.DeleteActivity"
-            android:label="หน้าลบเส้นทาง"
+            android:label="@string/deleteoption"
             android:screenOrientation="portrait"/>
         <activity android:name=".Activity.SettingActivity"
-            android:label="หน้าตั้งค่า"
+            android:label="@string/setting"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".Activity.AboutActivity"
             android:label="เกี่ยวกับ"

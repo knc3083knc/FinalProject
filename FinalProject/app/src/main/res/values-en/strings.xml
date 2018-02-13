@@ -28,4 +28,10 @@
     <string name="keyboard">Keyboard Action</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="camoption">Select Cam Option</string>
+    <string name="deleteoption">Delete Record</string>
+    <string name="navigation">Navigation</string>
+    <string name="recordact">Record Activity</string>
+    <string name="seldest">Select Destination</string>
+    <string name="setting">Settings</string>
 </resources>
