@@ -7,31 +7,26 @@
     tools:context="com.example.aneazxo.finalproject.Activity.NavCamEnActivity">
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="400dp"
-        android:layout_height="580dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        android:layout_height="584dp"
+
+       >
 
         <Button
             android:id="@+id/stopNavBtn"
-            android:layout_width="350dp"
+            android:layout_width="280dp"
             android:layout_height="150dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="32dp"
-            android:layout_weight="1"
             android:background="@android:color/holo_red_light"
             android:text="@string/stop"
             android:textColor="?attr/colorBackgroundFloating"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.32"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/direction"
-            app:layout_constraintVertical_bias="0.186" />/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.682" />
 
         <TextView
             android:id="@+id/direction"
@@ -42,7 +37,7 @@
             android:layout_marginTop="30dp"
             android:layout_weight="1"
             android:text="@string/angle"
-            android:textSize="30sp"
+            android:textSize="25sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/distance" />
 
@@ -55,7 +50,7 @@
             android:layout_marginTop="28dp"
             android:layout_weight="1"
             android:text="@string/m"
-            android:textSize="30sp"
+            android:textSize="25sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/destination" />
 
@@ -68,7 +63,7 @@
             android:layout_marginTop="30dp"
             android:layout_weight="1"
             android:text="@string/destination"
-            android:textSize="30sp"
+            android:textSize="25sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nearBy" />
 
@@ -81,7 +76,7 @@
             android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:text="@string/near"
-            android:textSize="30sp"
+            android:textSize="25sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
