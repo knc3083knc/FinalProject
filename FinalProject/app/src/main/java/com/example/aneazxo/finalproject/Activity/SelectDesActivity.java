@@ -98,22 +98,36 @@ public class SelectDesActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         ArrayList<String> responds = null;
-
+        DataModel model = new DataModel(SelectDesActivity.this);
+        ArrayList<String> valuesList = model.selectAllTarget();
         if (resultCode == RESULT_OK && null != data) {
             responds = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             String text = "";
             text = responds.get(0).trim().replace(" ", "");
-            switch (requestCode) {
-                case SELECT_DESTINATON: {
-                    Intent intent = new Intent(SelectDesActivity.this, ConfirmActivity.class);
-                    intent.putExtra("des", text);
-                    intent.putExtra("from", SELECT_DESTINATON);
-                    startActivity(intent);
-                    finish();
-                    break;
+            if(requestCode==SELECT_DESTINATON)
+            {
+                Log.d(TAG, "text ="+text);
+                for(int i=0;i<valuesList.size();i++)
+                {
+                    if (valuesList.get(i).equals(text))
+                    {
+                        Log.d(TAG, "onActivityResult: "+requestCode);
+                        Intent intent = new Intent(SelectDesActivity.this, ConfirmActivity.class);
+                        intent.putExtra("des", text);
+                        intent.putExtra("from", SELECT_DESTINATON);
+                        startActivity(intent);
+                        finish();
+                    }
+
                 }
+                notification("ไม่พบเส้นทาง"+text+"กรุณาลองใหม่อีกครั้ง");
+
+
+
             }
-        } else {
+
+        }
+        else {
 
         }
     }
