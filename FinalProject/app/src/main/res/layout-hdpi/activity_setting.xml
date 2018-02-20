@@ -7,10 +7,16 @@
     tools:context="com.example.aneazxo.finalproject.Activity.SettingActivity">
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="310dp"
-        android:layout_height="75dp"
-        tools:layout_editor_absoluteX="8dp"
+        android:id="@+id/constraintLayout17"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settingList">
 
         <Button
@@ -29,9 +35,15 @@
 
     <ListView
         android:id="@+id/settingList"
-        android:layout_width="310dp"
-        android:layout_height="350dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
