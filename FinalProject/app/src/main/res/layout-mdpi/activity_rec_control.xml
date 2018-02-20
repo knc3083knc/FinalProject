@@ -26,8 +26,10 @@ android:weightSum="1">
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.07"
         android:layout_marginBottom="15dp"
+        android:layout_weight="0.07"
+        app:layout_constraintEnd_toStartOf="@+id/cancel"
+        app:layout_constraintStart_toStartOf="@+id/cancel"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="301dp">
 
@@ -35,25 +37,27 @@ android:weightSum="1">
             android:id="@+id/stopRecBtn"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"
+
             android:background="@android:color/holo_blue_light"
             android:text="@string/record"
             android:textSize="20sp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="42dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cancel"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/cancel"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
+
 
             android:layout_weight=".5"
             android:background="@android:color/holo_red_light"
             android:text="@string/cancel"
             android:textSize="20sp"
-            app:layout_constraintLeft_toRightOf="@+id/stopRecBtn"
-            tools:layout_editor_absoluteY="42dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/stopRecBtn" />
 
 
     </android.support.constraint.ConstraintLayout>

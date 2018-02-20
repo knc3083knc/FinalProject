@@ -7,8 +7,10 @@
     tools:context="com.example.aneazxo.finalproject.Activity.SettingActivity">
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout10"
         android:layout_width="240dp"
-        android:layout_height="150dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.637"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -30,9 +32,14 @@
 
     <ListView
         android:id="@+id/settingList"
-        android:layout_width="310dp"
+        android:layout_width="300dp"
         android:layout_height="250dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp" />
+        android:layout_marginEnd="2dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

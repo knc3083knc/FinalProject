@@ -9,7 +9,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="250dp"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -17,8 +17,8 @@
 
         <Button
             android:id="@+id/backBtn"
-            android:layout_width="200dp"
-            android:layout_height="100dp"
+            android:layout_width="250dp"
+            android:layout_height="80dp"
             android:background="@android:color/holo_red_light"
             android:text="@string/back"
             android:textColor="?attr/colorBackgroundFloating"
@@ -33,7 +33,10 @@
         android:id="@+id/pointList"
         android:layout_width="310dp"
         android:layout_height="300dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.04" />
 
 </android.support.constraint.ConstraintLayout>
