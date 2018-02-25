@@ -7,12 +7,15 @@ import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.aneazxo.finalproject.Database.DataModel;
 import com.example.aneazxo.finalproject.R;
 import com.example.aneazxo.finalproject.core.Debug;
+import com.example.aneazxo.finalproject.core.Speaker;
 import com.example.aneazxo.finalproject.core.Tool;
 
 import java.io.File;
@@ -29,6 +32,7 @@ public class ConfirmActivity extends AppCompatActivity {
     private final int RECORD_SOUND = 2;
     private final int DELETE = 3;
     private final int RECORD_TXT = 4;
+    private boolean isExploreByTouchEnabled = false;
 
     private String destination;
     private int from;
@@ -41,7 +45,8 @@ public class ConfirmActivity extends AppCompatActivity {
         //getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         model = new DataModel(this);
-
+        AccessibilityManager am = (AccessibilityManager) getSystemService(ACCESSIBILITY_SERVICE);
+        isExploreByTouchEnabled = am.isTouchExplorationEnabled();
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             destination = bundle.getString("des");
@@ -59,17 +64,32 @@ public class ConfirmActivity extends AppCompatActivity {
         final TextView message = (TextView) dialog.findViewById(R.id.txt_dia);
         Button buttonConfirm = (Button) dialog.findViewById(R.id.btn_yes);
         Button buttonCancel = (Button) dialog.findViewById(R.id.btn_no);
-
+        ArrayList<String> responds = null;
+        DataModel model = new DataModel(ConfirmActivity.this);
+        final ArrayList<String> valuesList = model.selectAllTarget();
         if (from == SELECT_DESTINATON){
             message.setText("ต้องการไปที่" + des + "ใช่หรือไม่");
 
             buttonConfirm.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(ConfirmActivity.this, CamOptionActivity.class);
-                    intent.putExtra("des", destination);
-                    startActivity(intent);
-                    finish();
+                    for(int i=0;i<valuesList.size();i++) {
+                        if(des.equals(valuesList.get(i))){
+                            Intent intent = new Intent(ConfirmActivity.this, CamOptionActivity.class);
+                            intent.putExtra("des", destination);
+                            startActivity(intent);
+                            finish();
+
+                        }
+                        if(i==valuesList.size()-1)
+                        {
+                            if (!valuesList.get(i).equals(des))
+                            {
+                                notification("ไม่พบเส้นทาง"+des+"กรุณาลองใหม่อีกครั้ง");
+                            }
+                        }
+
+                    }
                 }
             });
 
@@ -158,6 +178,14 @@ public class ConfirmActivity extends AppCompatActivity {
         }
     }
 
+    public void notification(String text) {
+        if (isExploreByTouchEnabled == true) {
+            Toast.makeText(ConfirmActivity.this, text,
+                    Toast.LENGTH_LONG).show();
+        } else {
+            Speaker.getInstance(ConfirmActivity.this).speak(text);
+        }
+    }
     private void startPrompt(int OP) {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak Now");    // user hint 24 char per line

@@ -118,9 +118,16 @@ public class SelectDesActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     }
+                    if(i==valuesList.size()-1)
+                    {
+                        if (!valuesList.get(i).equals(text))
+                        {
+                            notification("ไม่พบเส้นทาง"+text+"กรุณาลองใหม่อีกครั้ง");
+                        }
+                    }
 
                 }
-                notification("ไม่พบเส้นทาง"+text+"กรุณาลองใหม่อีกครั้ง");
+
 
 
 
