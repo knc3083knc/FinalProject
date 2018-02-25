@@ -85,6 +85,10 @@ public class ConfirmActivity extends AppCompatActivity {
                         {
                             if (!valuesList.get(i).equals(des))
                             {
+
+                                Intent intent = new Intent(ConfirmActivity.this, SelectDesActivity.class);
+                                startActivity(intent);
+                                finish();
                                 notification("ไม่พบเส้นทาง"+des+"กรุณาลองใหม่อีกครั้ง");
                             }
                         }
