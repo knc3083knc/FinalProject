@@ -72,6 +72,7 @@ public class RecControlActivity extends FragmentActivity implements
     private double lat;
     private double lon;
     private String state;
+    private String stateup;
 
     private DataModel model;
     private Location location;
@@ -82,8 +83,9 @@ public class RecControlActivity extends FragmentActivity implements
     //global param for record state.
     private LatLng startPoint;
     private String recordName = "error";
+    private String recordUpdate = "InterestPoint";
     private ArrayList<LatLng> recordLatLngList;
-    private ArrayList<LatLng> updateLatLngList;
+    private ArrayList<LatLng> updateLatLngList = new ArrayList<LatLng>();
 
     private boolean isExecuted;
 
@@ -171,36 +173,22 @@ public class RecControlActivity extends FragmentActivity implements
             }
         });
 
-       update.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               Intent intent = new Intent(RecControlActivity.this, ConfirmRecordActivity.class);
-               updateLatLngList.add(startPoint);
-               intent.putExtra("LatLngList", updateLatLngList);
-               intent.putExtra("InterestPoint", recordName);
-               startActivity(intent);
-               finish();
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-           }
-       });
+                Log.d(TAG,"LAT = "+lat+" LONG"+lon+" "+recordUpdate);
+                updateLocation();
+            }
+        });
+
+
+
     }
 
-   /* private void updateLocation(String Interest) {
-        String fname = "";
-        fname = Debug.ON? Tool.fname_debug: Tool.fname_user;
-        File oldFile = new File(Tool.fpath + "/" + fname);
-        File backupFileName = new File(Tool.fpath + "/" + "backup.csv");
-        Tool.copyFileUsingChannel(oldFile, backupFileName);
-        ArrayList<String> al = model.selectAllToArray();
-        lat = location.getLatitude();
-        lon = location.getLongitude();
-        String sPoint = "" + al.size() + "," +
-                Interest + "," +
-                lat + "," +
-                lon + ",s";
-        al.add(sPoint);
-
-    }*/
+   private void updateLocation() {
+        stateup = "update";
+    }
 
 
     private void init() {
@@ -217,7 +205,7 @@ public class RecControlActivity extends FragmentActivity implements
         lon = 0;
         state = "idle";
         isExecuted = false;
-
+        stateup = "idle";
         //speaker
         //speaker = new Speaker(RecControlActivity.this);
         // Get instance of Vibrator from current Context
@@ -267,6 +255,7 @@ public class RecControlActivity extends FragmentActivity implements
             //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lon), 18));
             Log.d(TAG, "onLocationChanged: " + lat + ", " + lon);
             Log.d(TAG, "onLocationChanged: " + state + " state");
+            Log.d(TAG,"state"+stateup);
 
             if (isStarted == true) {
                 if (isExecuted == false) {
@@ -282,11 +271,10 @@ public class RecControlActivity extends FragmentActivity implements
                         recordLatLngList.add(startPoint); //add next point
                     }
                 }
-               /*if(state.equals("update"))
+               if(stateup.equals("update"))
                 {
-                    startPoint = new LatLng(lat,lon);
-                    recordLatLngList.add(startPoint);
-                }*/
+                    stateup = "idle";
+                }
             } else {
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                         new LatLng(lat, lon), 18));
@@ -365,6 +353,7 @@ public class RecControlActivity extends FragmentActivity implements
     private void execute(String text) {
 
         recordName = text;
+        recordUpdate = "InterestPoint";
         state = "record";
         recordLatLngList = new ArrayList<LatLng>();
         notification(Tool.msgPrepare);
