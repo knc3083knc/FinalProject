@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.example.aneazxo.finalproject.Database.DataModel;
 import com.example.aneazxo.finalproject.R;
+import com.example.aneazxo.finalproject.core.Debug;
 import com.example.aneazxo.finalproject.core.Speaker;
 import com.example.aneazxo.finalproject.core.Tool;
 import com.google.android.gms.common.ConnectionResult;
@@ -42,6 +43,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -64,6 +66,7 @@ public class RecControlActivity extends FragmentActivity implements
 
     private Button stopRec;
     private Button cancel;
+    private Button update;
     private String destination;
 
     private double lat;
@@ -71,7 +74,7 @@ public class RecControlActivity extends FragmentActivity implements
     private String state;
 
     private DataModel model;
-
+    private Location location;
     //private Speaker speaker;
     private boolean isExploreByTouchEnabled = false;
     private Vibrator vibrator;
@@ -80,6 +83,7 @@ public class RecControlActivity extends FragmentActivity implements
     private LatLng startPoint;
     private String recordName = "error";
     private ArrayList<LatLng> recordLatLngList;
+    private ArrayList<LatLng> updateLatLngList;
 
     private boolean isExecuted;
 
@@ -166,12 +170,43 @@ public class RecControlActivity extends FragmentActivity implements
                 finish();
             }
         });
+
+       update.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               Intent intent = new Intent(RecControlActivity.this, ConfirmRecordActivity.class);
+               updateLatLngList.add(startPoint);
+               intent.putExtra("LatLngList", updateLatLngList);
+               intent.putExtra("InterestPoint", recordName);
+               startActivity(intent);
+               finish();
+
+           }
+       });
     }
+
+   /* private void updateLocation(String Interest) {
+        String fname = "";
+        fname = Debug.ON? Tool.fname_debug: Tool.fname_user;
+        File oldFile = new File(Tool.fpath + "/" + fname);
+        File backupFileName = new File(Tool.fpath + "/" + "backup.csv");
+        Tool.copyFileUsingChannel(oldFile, backupFileName);
+        ArrayList<String> al = model.selectAllToArray();
+        lat = location.getLatitude();
+        lon = location.getLongitude();
+        String sPoint = "" + al.size() + "," +
+                Interest + "," +
+                lat + "," +
+                lon + ",s";
+        al.add(sPoint);
+
+    }*/
+
 
     private void init() {
         stopRec = (Button) findViewById(R.id.stopRecBtn);
         cancel = (Button) findViewById(R.id.cancel);
-
+        update = (Button) findViewById(R.id.updateRecBtn);
         AccessibilityManager am = (AccessibilityManager) getSystemService(ACCESSIBILITY_SERVICE);
         isExploreByTouchEnabled = am.isTouchExplorationEnabled();
 
@@ -247,6 +282,11 @@ public class RecControlActivity extends FragmentActivity implements
                         recordLatLngList.add(startPoint); //add next point
                     }
                 }
+               /*if(state.equals("update"))
+                {
+                    startPoint = new LatLng(lat,lon);
+                    recordLatLngList.add(startPoint);
+                }*/
             } else {
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                         new LatLng(lat, lon), 18));

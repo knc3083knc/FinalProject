@@ -72,7 +72,6 @@
         android:layout_marginTop="180dp"
         android:visibility="gone"
 
-
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintLeft_toLeftOf="parent"
