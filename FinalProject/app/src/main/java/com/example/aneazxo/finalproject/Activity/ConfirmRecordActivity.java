@@ -68,16 +68,20 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
                 String fname1 = "";
                 fname = Debug.ON? Tool.fname_debug: Tool.fname_user;
                 fname1 = Debug.ON? Tool.fname_debug1: Tool.fname_user1;
+
                 File oldFile1 = new File(Tool.fpath + "/" + fname1);
                 File backupFileName1 = new File(Tool.fpath + "/" + "backupInter.csv");
+
                 File oldFile = new File(Tool.fpath + "/" + fname);
                 File backupFileName = new File(Tool.fpath + "/" + "backup.csv");
+
                 Tool.copyFileUsingChannel(oldFile, backupFileName);
-                Tool.copyFileUsingChannel(oldFile1,backupFileName1);
+
 
                 // write file
                 addRecordList(recordName);
-                /*addUpdateList(updateName);*/
+                //update
+                addUpdateList(updateName);
 
                 Intent intent = new Intent(ConfirmRecordActivity.this, MainActivity.class);
                 intent.putExtra("finished", Tool.msgRecordComplete);
@@ -99,19 +103,27 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
 
     }
 
-   /*private boolean addUpdateList(ArrayList<String> updateName) {
+   private boolean addUpdateList(ArrayList<String> updateName) {
         try {
             //new method
-            ArrayList<String> al = model.selectAllToArray();
-            int[] checkPoint = new int[latlngList.size()];
-            refreshDatapointFileFromArrayList(al);
-            //Dijkstra or AStar no refresh graph
-            //refreshGraph();
+            ArrayList<String> al = model1.selectAllToArray();
+            String s = "";
+            for (int i=0;i<updateLatLngList.size();i++)
+            {
+                 s = "" + al.size() + ","+updateName.get(i)+","
+                        + updateLatLngList.get(i).latitude + ","
+                        + updateLatLngList.get(i).longitude + ",";
+
+                 al.add(s);
+            }
+
+            refreshDatapointFileFromArrayList1(al);
             return true;
+
         } catch (Exception e) {
         }
         return false;
-    }*/
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -434,6 +446,25 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
         } catch (Exception e) {
         }
         return false;
+    }
+    private void refreshDatapointFileFromArrayList1(ArrayList<String> al) {
+        String fname1 = "";
+        fname1 = Debug.ON ? Tool.fname_debug1 : Tool.fname_user1;
+        File folder = new File(Tool.fpath + "/" + fname1);
+
+        try {
+            FileOutputStream fOut = new FileOutputStream(folder);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fOut);
+
+            outputStreamWriter.write("Id,Name,Lat,Lng\n");
+            for (int i = 0; i < al.size(); i++) {
+                outputStreamWriter.write("" + al.get(i) + "\n");
+            }
+
+            outputStreamWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void refreshDatapointFileFromArrayList(ArrayList<String> al) {
