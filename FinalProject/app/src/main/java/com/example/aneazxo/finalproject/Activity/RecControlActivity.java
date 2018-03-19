@@ -75,7 +75,7 @@ public class RecControlActivity extends FragmentActivity implements
     private String state;
     private String stateup;
 
-    private DataModel1 model1;
+    /*private DataModel1 model1;*/
     private DataModel model;
     private Location location;
     //private Speaker speaker;
@@ -205,7 +205,7 @@ public class RecControlActivity extends FragmentActivity implements
 
         //database
         model = new DataModel(this);
-        model1 = new DataModel1(this);
+        /*model1 = new DataModel1(this);*/
 
         lat = 0;
         lon = 0;

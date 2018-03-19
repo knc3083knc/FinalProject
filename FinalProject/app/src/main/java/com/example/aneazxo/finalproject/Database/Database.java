@@ -27,9 +27,6 @@ public class Database extends SQLiteOpenHelper {
     private static final int DB_VERSION = 1;
 
     public static final String TABLE_NAME = "Point";
-
-
-
     public static final String COL_ID = "pointId";
     public static final String COL_NAME = "name";
     public static final String COL_LAT = "lat";
