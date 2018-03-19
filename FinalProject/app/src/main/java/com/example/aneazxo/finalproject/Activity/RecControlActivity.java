@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.aneazxo.finalproject.Database.DataModel;
+import com.example.aneazxo.finalproject.Database.DataModel1;
 import com.example.aneazxo.finalproject.R;
 import com.example.aneazxo.finalproject.core.Debug;
 import com.example.aneazxo.finalproject.core.Speaker;
@@ -74,6 +75,7 @@ public class RecControlActivity extends FragmentActivity implements
     private String state;
     private String stateup;
 
+    private DataModel1 model1;
     private DataModel model;
     private Location location;
     //private Speaker speaker;
@@ -85,7 +87,8 @@ public class RecControlActivity extends FragmentActivity implements
     private String recordName = "error";
     private String recordUpdate = "InterestPoint";
     private ArrayList<LatLng> recordLatLngList;
-    private ArrayList<LatLng> updateLatLngList = new ArrayList<LatLng>();
+    private ArrayList<String> updateList;
+    private ArrayList<LatLng> updateLatLngList;
 
     private boolean isExecuted;
 
@@ -142,6 +145,8 @@ public class RecControlActivity extends FragmentActivity implements
                     Intent intent = new Intent(RecControlActivity.this, ConfirmRecordActivity.class);
                     intent.putExtra("LatLngList", recordLatLngList);
                     intent.putExtra("recordName", recordName);
+                    intent.putExtra("updateName",updateList);
+                    intent.putExtra("upLatLngList",updateLatLngList);
                     startActivity(intent);
                     finish();
 
@@ -200,6 +205,7 @@ public class RecControlActivity extends FragmentActivity implements
 
         //database
         model = new DataModel(this);
+        model1 = new DataModel1(this);
 
         lat = 0;
         lon = 0;
@@ -273,6 +279,14 @@ public class RecControlActivity extends FragmentActivity implements
                 }
                if(stateup.equals("update"))
                 {
+                    startPoint = new LatLng(lat,lon);
+                    updateLatLngList.add(startPoint);
+                    updateList.add("IOP");
+                    for(int i=0;i<updateLatLngList.size();i++)
+                    {
+                        Log.d(TAG,updateLatLngList.toString());
+                        Log.d(TAG,updateList.get(i));
+                    }
                     stateup = "idle";
                 }
             } else {
@@ -356,6 +370,9 @@ public class RecControlActivity extends FragmentActivity implements
         recordUpdate = "InterestPoint";
         state = "record";
         recordLatLngList = new ArrayList<LatLng>();
+        updateList = new ArrayList<String>();
+        updateLatLngList = new ArrayList<LatLng>();
+
         notification(Tool.msgPrepare);
 
     }

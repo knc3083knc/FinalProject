@@ -18,43 +18,43 @@ import java.io.IOException;
  * Created by AneazXo on 30-Jan-17.
  */
 
-public class Database extends SQLiteOpenHelper {
+public class Database1 extends SQLiteOpenHelper {
 
     //private String fname = "pointdata.csv";
     private String fpath = Environment.getExternalStorageDirectory() + "/" + "MapData";
 
-    private static final String DB_NAME = "My Point Data";
+    private static final String DB_NAME = "My Interest Data";
     private static final int DB_VERSION = 1;
 
-    public static final String TABLE_NAME = "Point";
+    public static final String TABLE_NAME = "Interest";
 
 
 
-    public static final String COL_ID = "pointId";
+    public static final String COL_ID = "ID";
     public static final String COL_NAME = "name";
     public static final String COL_LAT = "lat";
     public static final String COL_LNG = "lng";
-    public static final String COL_ADJ = "adj";
+
 
 
 
 
     Context context;
 
-    public Database(Context ctx) {
+    public Database1(Context ctx) {
         super(ctx, DB_NAME, null, DB_VERSION);
         context = ctx;
     }
 
     public void onCreate(SQLiteDatabase db) {
         String fname = "";
-        fname = Debug.ON? Tool.fname_debug: Tool.fname_user;
+        fname = Debug.ON? Tool.fname_debug1: Tool.fname_user1;
 
         db.execSQL(
                 "CREATE TABLE " + TABLE_NAME + "("
-                + COL_ID + " INTEGER PRIMARY KEY, "
-                + COL_NAME + " TEXT, " + COL_LAT + " TEXT, "
-                + COL_LNG  + " TEXT, " + COL_ADJ + " TEXT);"
+                        + COL_ID + " INTEGER PRIMARY KEY, "
+                        + COL_NAME + " TEXT, " + COL_LAT + " TEXT, "
+                        + COL_LNG  + " TEXT);"
         );
 
 
@@ -72,12 +72,10 @@ public class Database extends SQLiteOpenHelper {
                     String[] str = readLine.split(",");
                     db.execSQL("INSERT INTO " + TABLE_NAME
                             + " (" + COL_ID + ", " + COL_NAME + ", " + COL_LAT
-                            + ", " + COL_LNG + ", " + COL_ADJ
-                            + ") VALUES (" + str[0]
+                            + ", " + COL_LNG + ") VALUES (" + str[0]
                             + ", '" + str[1]
                             + "', '" + str[2]
                             + "', '" + str[3]
-                            + "', '" + str[4]
                             + "');");
                 }
             } catch (SQLiteConstraintException e) {
@@ -90,14 +88,14 @@ public class Database extends SQLiteOpenHelper {
                         "CREATE TABLE " + TABLE_NAME + "("
                                 + COL_ID + " INTEGER PRIMARY KEY, "
                                 + COL_NAME + " TEXT, " + COL_LAT + " TEXT, "
-                                + COL_LNG  + " TEXT, " + COL_ADJ + " TEXT);"
+                                + COL_LNG  + " TEXT " + ");"
                 );
 
                 // Copy Backup to point_data && Delete Backup file??
                 fname = "";
-                fname = Debug.ON? Tool.fname_debug: Tool.fname_user;
+                fname = Debug.ON? Tool.fname_debug: Tool.fname_user1;
                 File mapData = new File(Tool.fpath + "/" + fname);
-                File backupData = new File(Tool.fpath + "/" + "backup.csv");
+                File backupData = new File(Tool.fpath + "/" + "backup1.csv");
                 Tool.copyFileUsingChannel(backupData, mapData);
 
                 // INSERT
@@ -110,13 +108,11 @@ public class Database extends SQLiteOpenHelper {
                         String[] str = readLine.split(",");
                         db.execSQL("INSERT INTO " + TABLE_NAME
                                 + " (" + COL_ID + ", " + COL_NAME + ", " + COL_LAT
-                                + ", " + COL_LNG + ", " + COL_ADJ
-                                + ") VALUES (" + str[0]
+                                + ", " + COL_LNG +") VALUES (" + str[0]
                                 + ", '" + str[1]
                                 + "', '" + str[2]
                                 + "', '" + str[3]
-                                + "', '" + str[4]
-                                + "');");
+                                + "',);");
                     }
                 } catch (IOException ex) {
                     ex.printStackTrace();

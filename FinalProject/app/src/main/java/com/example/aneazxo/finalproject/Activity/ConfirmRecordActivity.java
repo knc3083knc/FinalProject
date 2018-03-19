@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.aneazxo.finalproject.Database.DataModel;
+import com.example.aneazxo.finalproject.Database.DataModel1;
 import com.example.aneazxo.finalproject.R;
 import com.example.aneazxo.finalproject.core.Debug;
 import com.example.aneazxo.finalproject.core.Tool;
@@ -35,8 +36,11 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
     private Button confirm;
     private Button cancel;
     private DataModel model;
+    private DataModel1 model1;
     private String recordName = "error";
     private ArrayList<LatLng> latlngList = new ArrayList<LatLng>();
+    private ArrayList<LatLng> updateLatLngList = new ArrayList<LatLng>();
+    private ArrayList<String> updateName = new ArrayList<String>();
 
 
     @Override
@@ -52,7 +56,7 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
         mapFragment.getMapAsync(this);
 
         model = new DataModel(this);
-
+        model1 = new DataModel1(this);
         confirm = (Button) findViewById(R.id.confirm);
         cancel = (Button) findViewById(R.id.cancel);
 
@@ -61,13 +65,19 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
             public void onClick(View view) {
                 // Write Backup MapData
                 String fname = "";
+                String fname1 = "";
                 fname = Debug.ON? Tool.fname_debug: Tool.fname_user;
+                fname1 = Debug.ON? Tool.fname_debug1: Tool.fname_user1;
+                File oldFile1 = new File(Tool.fpath + "/" + fname1);
+                File backupFileName1 = new File(Tool.fpath + "/" + "backupInter.csv");
                 File oldFile = new File(Tool.fpath + "/" + fname);
                 File backupFileName = new File(Tool.fpath + "/" + "backup.csv");
                 Tool.copyFileUsingChannel(oldFile, backupFileName);
+                Tool.copyFileUsingChannel(oldFile1,backupFileName1);
 
                 // write file
                 addRecordList(recordName);
+                /*addUpdateList(updateName);*/
 
                 Intent intent = new Intent(ConfirmRecordActivity.this, MainActivity.class);
                 intent.putExtra("finished", Tool.msgRecordComplete);
@@ -88,6 +98,20 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
         });
 
     }
+
+   /*private boolean addUpdateList(ArrayList<String> updateName) {
+        try {
+            //new method
+            ArrayList<String> al = model.selectAllToArray();
+            int[] checkPoint = new int[latlngList.size()];
+            refreshDatapointFileFromArrayList(al);
+            //Dijkstra or AStar no refresh graph
+            //refreshGraph();
+            return true;
+        } catch (Exception e) {
+        }
+        return false;
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -129,6 +153,8 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
         if (bundle != null) {
             latlngList = (ArrayList<LatLng>) bundle.get("LatLngList");
             recordName = bundle.getString("recordName");
+            updateLatLngList = (ArrayList<LatLng>) bundle.get("upLatLngList");
+            updateName = (ArrayList<String>) bundle.get("updateName");
         }
 
         PolylineOptions polylineOptions = new PolylineOptions();

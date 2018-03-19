@@ -25,7 +25,9 @@ import java.util.ArrayList;
 public class Tool {
 
     public static final String fname_user = "pointdata_user.csv";
+    public static final String fname_user1 = "interestdata_user.csv";
     public static final String fname_debug = "pointdata_debug.csv";
+    public static final String fname_debug1 = "interest_debug.csv";
     public static final String settingFname = "settings.txt";
     public static final String fpath = Environment.getExternalStorageDirectory() + "/" + "MapData";
     public static final String msgNotFound = "ไม่พบ";
