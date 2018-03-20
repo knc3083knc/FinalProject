@@ -74,9 +74,11 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
                 Tool.copyFileUsingChannel(oldFile, backupFileName);
 
                 // write file
+                boolean b = addUpdateList(updateName);
+                Log.d(TAG,"update"+b);
                 addRecordList(recordName);
                 Log.d(TAG,"add record success");
-                addUpdateList(updateName);
+
 
                 Intent intent = new Intent(ConfirmRecordActivity.this, MainActivity.class);
                 intent.putExtra("finished", Tool.msgRecordComplete);
@@ -103,18 +105,23 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
             //new method
             ArrayList<String> al = model.selectPOI();
             Log.d(TAG,"Select POI");
+            Log.d(TAG,al.toString());
             refreshDatapointFileFromArrayList1(al);
             Log.d(TAG,"Do refresh");
-            for(int i=0;i<updateLatLngList.size();i++)
+            String sPoint ="";
+            for(int i=0;i<updateName.size();i++)
             {
-                String sPoint = "" + al.size() + ","+updateName.get(i)+","
+                Log.d(TAG,updateName.get(i));
+                sPoint = "" + al.size() + ","+updateName.get(i)+","
                         + latlngList.get(i).latitude + ","
                         + latlngList.get(i).longitude ;
                 Log.d(TAG,sPoint);
-
                 al.add(sPoint);
+
             }
+            refreshDatapointFileFromArrayList1(al);
             Log.d(TAG,al.toString());
+
             return true;
 
         } catch (Exception e) {
@@ -166,7 +173,7 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
             updateName = (ArrayList<String>) bundle.get("updateName");
             for(int i=0;i<updateLatLngList.size();i++)
             {
-                Log.d(TAG, updateLatLngList.toString());
+                Log.d(TAG, updateLatLngList.get(i).toString());
                 Log.d(TAG, updateName.get(i));
             }
         }
@@ -184,7 +191,7 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
         mMap.addPolyline(polylineOptions);
     }
 
-    private boolean addRecordList(String recordName) {
+    private  void addRecordList(String recordName) {
         try {
             //new method
             ArrayList<String> al = model.selectAllToArray();
@@ -444,10 +451,10 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
             refreshDatapointFileFromArrayList(al);
             //Dijkstra or AStar no refresh graph
             //refreshGraph();
-            return true;
+
         } catch (Exception e) {
         }
-        return false;
+
     }
     private void refreshDatapointFileFromArrayList1(ArrayList<String> al) {
         String fname1 = "";
