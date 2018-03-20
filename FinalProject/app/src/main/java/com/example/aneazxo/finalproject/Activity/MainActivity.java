@@ -136,7 +136,63 @@ public class MainActivity extends AppCompatActivity {
             prefs.edit().putBoolean("firstrun", false).commit();
         }
     }
+    private void checkInterestdata() {
+        String fname = "";
+        fname = Debug.ON? Tool.fname_debug1: Tool.fname_user1;
+        new File(Tool.fpath).mkdirs();
+        File f = new File(Tool.fpath + "/" + fname);
 
+        Log.d(TAG, "test3: " + f.getPath());
+
+        if (f.exists()) {
+            Log.d(TAG, "f.exists(): have file from Map data.");
+
+            //nothing
+
+        } else {
+            Log.d(TAG, "f.exists(): no have file from Map data.");
+
+            BufferedReader reader = null;
+            FileOutputStream fOut;
+            OutputStreamWriter outputStreamWriter = null;
+            try {
+                reader = new BufferedReader(
+                        new InputStreamReader(getAssets().open("Interestdata.csv")));
+                fOut = new FileOutputStream(f);
+                outputStreamWriter = new OutputStreamWriter(fOut);
+
+                // do reading, usually loop until end of file reading
+                String mLine;
+                Log.d(TAG, "test3: from assets");
+                while ((mLine = reader.readLine()) != null) {
+                    //process line
+                    Log.d(TAG, "mLine: " + mLine);
+                    outputStreamWriter.write("" + mLine + "\n");
+
+                    if (!Debug.ON) {
+                        break;
+                    }
+                }
+            } catch (IOException e) {
+                //log the exception
+            } finally {
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (IOException e) {
+                        //log the exception
+                    }
+                }
+                if (outputStreamWriter != null) {
+                    try {
+                        outputStreamWriter.close();
+                    } catch (IOException e) {
+                        //log the exception
+                    }
+                }
+            }
+        }
+    }
     private void checkPointdata() {
         String fname = "";
         fname = Debug.ON? Tool.fname_debug: Tool.fname_user;
@@ -282,6 +338,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         checkPointdata();
+        checkInterestdata();
         checkSettingData();
     }
 
@@ -316,6 +373,7 @@ public class MainActivity extends AppCompatActivity {
                     /* Add future permission check here */) {
                     // All Permissions Granted
                     checkPointdata();
+                    checkInterestdata();
                 } else {
                     // Permission Denied
                     Toast.makeText(MainActivity.this, "Some Permission is Denied, Application may not work", Toast.LENGTH_SHORT)

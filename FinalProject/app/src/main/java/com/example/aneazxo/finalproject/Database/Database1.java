@@ -36,9 +36,6 @@ public class Database1 extends SQLiteOpenHelper {
     public static final String COL_LNG = "lng";
 
 
-
-
-
     Context context;
 
     public Database1(Context ctx) {
@@ -56,10 +53,6 @@ public class Database1 extends SQLiteOpenHelper {
                         + COL_NAME + " TEXT, " + COL_LAT + " TEXT, "
                         + COL_LNG  + " TEXT);"
         );
-
-
-
-
 
         try {
             FileReader fileReader = new FileReader(fpath + "/" + fname);
@@ -93,9 +86,9 @@ public class Database1 extends SQLiteOpenHelper {
 
                 // Copy Backup to point_data && Delete Backup file??
                 fname = "";
-                fname = Debug.ON? Tool.fname_debug: Tool.fname_user1;
+                fname = Debug.ON? Tool.fname_debug1: Tool.fname_user1;
                 File mapData = new File(Tool.fpath + "/" + fname);
-                File backupData = new File(Tool.fpath + "/" + "backup1.csv");
+                File backupData = new File(Tool.fpath + "/" + "backup2.csv");
                 Tool.copyFileUsingChannel(backupData, mapData);
 
                 // INSERT
