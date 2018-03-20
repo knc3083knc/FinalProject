@@ -75,7 +75,7 @@ public class RecControlActivity extends FragmentActivity implements
     private String state;
     private String stateup;
 
-    /*private DataModel1 model1;*/
+    private DataModel1 model1;
     private DataModel model;
     private Location location;
     //private Speaker speaker;

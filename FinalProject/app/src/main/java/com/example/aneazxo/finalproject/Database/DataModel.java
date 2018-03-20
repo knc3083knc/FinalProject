@@ -29,6 +29,26 @@ public class DataModel {
         return nRow;
     }
 
+    public ArrayList<String> selectPOI () {
+        ArrayList<String> ansArray = new ArrayList<String>();
+        mCursor = mDb.rawQuery("SELECT " + Database.COL_ID1 + ", " + Database.COL_NAME1 + ", "
+                + Database.COL_LAT1 + ", " + Database.COL_LNG1 +
+                " FROM " + Database.TABLE_NAME1, null);
+
+        mCursor.moveToFirst();
+        while (!mCursor.isAfterLast()) {
+
+            ansArray.add("" +
+                    mCursor.getInt(mCursor.getColumnIndex(Database.COL_ID1)) + "," +
+                    mCursor.getString(mCursor.getColumnIndex(Database.COL_NAME1)) + "," +
+                    mCursor.getString(mCursor.getColumnIndex(Database.COL_LAT1)) + "," +
+                    mCursor.getString(mCursor.getColumnIndex(Database.COL_LNG1))
+            );
+
+            mCursor.moveToNext();
+        }
+        return ansArray;
+    }
     public ArrayList<String> selectAllToArray () {
         ArrayList<String> ansArray = new ArrayList<String>();
         mCursor = mDb.rawQuery("SELECT " + Database.COL_ID + ", " + Database.COL_NAME + ", "

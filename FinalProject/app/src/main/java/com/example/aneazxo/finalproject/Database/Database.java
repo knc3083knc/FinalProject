@@ -33,6 +33,12 @@ public class Database extends SQLiteOpenHelper {
     public static final String COL_LNG = "lng";
     public static final String COL_ADJ = "adj";
 
+    public static final String TABLE_NAME1 = "POI";
+    public static final String COL_ID1 = "InterestId";
+    public static final String COL_NAME1 = "name";
+    public static final String COL_LAT1 = "lat";
+    public static final String COL_LNG1 = "lng";
+
 
 
 
@@ -53,6 +59,7 @@ public class Database extends SQLiteOpenHelper {
                 + COL_NAME + " TEXT, " + COL_LAT + " TEXT, "
                 + COL_LNG  + " TEXT, " + COL_ADJ + " TEXT);"
         );
+
 
 
 
@@ -88,6 +95,13 @@ public class Database extends SQLiteOpenHelper {
                                 + COL_ID + " INTEGER PRIMARY KEY, "
                                 + COL_NAME + " TEXT, " + COL_LAT + " TEXT, "
                                 + COL_LNG  + " TEXT, " + COL_ADJ + " TEXT);"
+                );
+
+                db.execSQL(
+                        "CREATE TABLE " + TABLE_NAME1 + "("
+                                + COL_ID1 + " INTEGER PRIMARY KEY, "
+                                + COL_NAME1 + " TEXT, " + COL_LAT1 + " TEXT, "
+                                + COL_LNG1  + " TEXT );"
                 );
 
                 // Copy Backup to point_data && Delete Backup file??
