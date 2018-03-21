@@ -282,6 +282,7 @@ public class RecControlActivity extends FragmentActivity implements
                     startPoint = new LatLng(lat,lon);
                     updateLatLngList.add(startPoint);
                     updateList.add("IOP");
+                    Log.d(TAG,"SIZE = "+updateLatLngList.size());
                     for(int i=0;i<updateLatLngList.size();i++)
                     {
                         Log.d(TAG,updateLatLngList.toString());

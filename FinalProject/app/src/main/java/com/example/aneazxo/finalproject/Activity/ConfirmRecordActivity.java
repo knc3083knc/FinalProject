@@ -67,7 +67,7 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
             public void onClick(View view) {
                 // Write Backup MapData
                 String fname = "";
-                fname = Debug.ON? Tool.fname_debug: Tool.fname_user;
+                fname = Debug.ON ? Tool.fname_debug : Tool.fname_user;
 
                 File oldFile = new File(Tool.fpath + "/" + fname);
                 File backupFileName = new File(Tool.fpath + "/" + "backup.csv");
@@ -75,9 +75,10 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
 
                 // write file
                 boolean b = addUpdateList(updateName);
-                Log.d(TAG,"update"+b);
+                Log.d(TAG, "update" + b);
                 addRecordList(recordName);
-                Log.d(TAG,"add record success");
+                Log.d(TAG, "add record success");
+
 
 
                 Intent intent = new Intent(ConfirmRecordActivity.this, MainActivity.class);
@@ -100,27 +101,28 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
 
     }
 
-   private boolean addUpdateList(ArrayList<String> updateName) {
+    private boolean addUpdateList(ArrayList<String> updateName) {
         try {
             //new method
             ArrayList<String> al = model.selectPOI();
-            Log.d(TAG,"Select POI");
-            Log.d(TAG,al.toString());
+            Log.d(TAG, "Select POI");
+            Log.d(TAG, al.toString());
             refreshDatapointFileFromArrayList1(al);
-            Log.d(TAG,"Do refresh");
-            String sPoint ="";
-            for(int i=0;i<updateName.size();i++)
-            {
-                Log.d(TAG,updateName.get(i));
-                sPoint = "" + al.size() + ","+updateName.get(i)+","
-                        + latlngList.get(i).latitude + ","
-                        + latlngList.get(i).longitude ;
-                Log.d(TAG,sPoint);
+            Log.d(TAG, "Do refresh");
+            Log.d(TAG, "UPDATENAME "+updateName.toString());
+            Log.d(TAG, "UPDATELATLNG "+ updateLatLngList.toString());
+            String sPoint = "";
+            for (int i = 0; i < updateName.size(); i++) {
+                Log.d(TAG, updateName.get(i));
+                sPoint = "" + al.size() + "," + updateName.get(i) + ","
+                        + updateLatLngList.get(i).latitude + ","
+                        + updateLatLngList.get(i).longitude;
+                Log.d(TAG, sPoint);
                 al.add(sPoint);
 
             }
             refreshDatapointFileFromArrayList1(al);
-            Log.d(TAG,al.toString());
+            Log.d(TAG, al.toString());
 
             return true;
 
@@ -171,8 +173,7 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
             recordName = bundle.getString("recordName");
             updateLatLngList = (ArrayList<LatLng>) bundle.get("upLatLngList");
             updateName = (ArrayList<String>) bundle.get("updateName");
-            for(int i=0;i<updateLatLngList.size();i++)
-            {
+            for (int i = 0; i < updateLatLngList.size(); i++) {
                 Log.d(TAG, updateLatLngList.get(i).toString());
                 Log.d(TAG, updateName.get(i));
             }
@@ -185,13 +186,13 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
             polylineOptions.add(latlng);
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                new LatLng(latlngList.get(latlngList.size()-1).latitude,
-                        latlngList.get(latlngList.size()-1).longitude
+                new LatLng(latlngList.get(latlngList.size() - 1).latitude,
+                        latlngList.get(latlngList.size() - 1).longitude
                 ), 18));
         mMap.addPolyline(polylineOptions);
     }
 
-    private  void addRecordList(String recordName) {
+    private void addRecordList(String recordName) {
         try {
             //new method
             ArrayList<String> al = model.selectAllToArray();
@@ -456,6 +457,7 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
         }
 
     }
+
     private void refreshDatapointFileFromArrayList1(ArrayList<String> al) {
         String fname1 = "";
         fname1 = Debug.ON ? Tool.fname_debug1 : Tool.fname_user1;
@@ -478,7 +480,7 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
 
     private void refreshDatapointFileFromArrayList(ArrayList<String> al) {
         String fname = "";
-        fname = Debug.ON? Tool.fname_debug: Tool.fname_user;
+        fname = Debug.ON ? Tool.fname_debug : Tool.fname_user;
         File folder = new File(Tool.fpath + "/" + fname);
 
         try {
