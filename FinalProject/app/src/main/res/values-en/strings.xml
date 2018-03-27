@@ -39,4 +39,7 @@
     <string name="location1">You not enable GPS,Do you want to enable GPS?</string>
     <string name="record1">Do you want go to Record Path first?</string>
     <string name="update">Update</string>
+    <string name="reco">Record</string>
+    <string name="recor">Do you want to record</string>
+    <string name="yn">Yes or No?</string>
 </resources>

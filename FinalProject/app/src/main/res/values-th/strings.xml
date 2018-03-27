@@ -39,4 +39,7 @@
     <string name="location1">ท่านยังไม่ได้เปิด location ต้องการไปที่การตั้งค่าและเปิด location หรือไม่</string>
     <string name="record1">ท่านต้องการไปที่หน้าบันทึกเส้นทางใช่หรือไม่</string>
     <string name="update">อัพเดท</string>
+    <string name="reco">หน้าบันทึกเส้นทาง</string>
+    <string name="recor">คุณต้องการบันทึกไปที่เส้นทาง</string>
+    <string name="yn">ใช่หรือไม่</string>
 </resources>

@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -15,6 +16,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -141,14 +143,38 @@ public class RecControlActivity extends FragmentActivity implements
                         e.printStackTrace();
                     }
                     finishRecord();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RecControlActivity.this);
+                    builder.setCancelable(true);
+                    builder.setTitle(getString(R.string.reco));
+                    builder.setMessage(getString(R.string.recor)+" "+recordName+" "+getString(R.string.yn));
+                    builder.setPositiveButton(getString(R.string.confirm),
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(RecControlActivity.this, ConfirmRecordActivity.class);
+                                    intent.putExtra("LatLngList", recordLatLngList);
+                                    intent.putExtra("recordName", recordName);
+                                    intent.putExtra("updateName",updateList);
+                                    intent.putExtra("upLatLngList",updateLatLngList);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            });
+                    builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(RecControlActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
 
-                    Intent intent = new Intent(RecControlActivity.this, ConfirmRecordActivity.class);
-                    intent.putExtra("LatLngList", recordLatLngList);
-                    intent.putExtra("recordName", recordName);
-                    intent.putExtra("updateName",updateList);
-                    intent.putExtra("upLatLngList",updateLatLngList);
-                    startActivity(intent);
-                    finish();
+                        }
+
+                    });
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
+
 
                 /*
                 Intent intent = new Intent(RecControlActivity.this, MainActivity.class);
