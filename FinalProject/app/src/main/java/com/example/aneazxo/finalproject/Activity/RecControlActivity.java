@@ -193,6 +193,19 @@ public class RecControlActivity extends FragmentActivity implements
 
    private void updateLocation() {
         stateup = "update";
+       if(stateup.equals("update"))
+       {
+           startPoint = new LatLng(lat,lon);
+           updateLatLngList.add(startPoint);
+           updateList.add("IOP");
+           Log.d(TAG,"SIZE = "+updateLatLngList.size());
+           for(int i=0;i<updateLatLngList.size();i++)
+           {
+               Log.d(TAG,updateLatLngList.toString());
+               Log.d(TAG,updateList.get(i));
+           }
+           stateup = "idle";
+       }
     }
 
 
@@ -277,19 +290,7 @@ public class RecControlActivity extends FragmentActivity implements
                         recordLatLngList.add(startPoint); //add next point
                     }
                 }
-               if(stateup.equals("update"))
-                {
-                    startPoint = new LatLng(lat,lon);
-                    updateLatLngList.add(startPoint);
-                    updateList.add("IOP");
-                    Log.d(TAG,"SIZE = "+updateLatLngList.size());
-                    for(int i=0;i<updateLatLngList.size();i++)
-                    {
-                        Log.d(TAG,updateLatLngList.toString());
-                        Log.d(TAG,updateList.get(i));
-                    }
-                    stateup = "idle";
-                }
+
             } else {
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                         new LatLng(lat, lon), 18));
