@@ -23,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.aneazxo.finalproject.Database.DataModel;
@@ -70,6 +71,8 @@ public class RecControlActivity extends FragmentActivity implements
     private Button stopRec;
     private Button cancel;
     private Button update;
+    private Button keyboard;
+    private EditText text;
     private String destination;
 
     private double lat;
@@ -204,10 +207,19 @@ public class RecControlActivity extends FragmentActivity implements
             }
         });
 
+        keyboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                keyboard.setVisibility(View.GONE);
+                text.setVisibility(View.VISIBLE);
+                update.setVisibility(View.VISIBLE);
+            }
+        });
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String txt = text.getText().toString();
+                updateList.add(txt);
                 Log.d(TAG,"LAT = "+lat+" LONG"+lon+" "+recordUpdate);
                 updateLocation();
             }
@@ -223,7 +235,7 @@ public class RecControlActivity extends FragmentActivity implements
        {
            startPoint = new LatLng(lat,lon);
            updateLatLngList.add(startPoint);
-           updateList.add("IOP");
+
            Log.d(TAG,"SIZE = "+updateLatLngList.size());
            for(int i=0;i<updateLatLngList.size();i++)
            {
@@ -239,6 +251,8 @@ public class RecControlActivity extends FragmentActivity implements
         stopRec = (Button) findViewById(R.id.stopRecBtn);
         cancel = (Button) findViewById(R.id.cancel);
         update = (Button) findViewById(R.id.updateRecBtn);
+        keyboard = (Button) findViewById(R.id.txtInput);
+        text = (EditText) findViewById(R.id.editTxtInput);
         AccessibilityManager am = (AccessibilityManager) getSystemService(ACCESSIBILITY_SERVICE);
         isExploreByTouchEnabled = am.isTouchExplorationEnabled();
 
