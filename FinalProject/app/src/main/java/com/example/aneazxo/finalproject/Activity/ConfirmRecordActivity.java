@@ -73,6 +73,14 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
                 File backupFileName = new File(Tool.fpath + "/" + "backup.csv");
                 Tool.copyFileUsingChannel(oldFile, backupFileName);
 
+                String fname1 = "";
+                fname1 = Debug.ON ? Tool.fname_debug1 : Tool.fname_user1;
+
+                File oldFile1 = new File(Tool.fpath + "/" + fname1);
+                File backupFileName1 = new File(Tool.fpath + "/" + "backup1.csv");
+                Tool.copyFileUsingChannel(oldFile1, backupFileName1);
+
+
                 // write file
                 boolean b = addUpdateList(updateName);
                 Log.d(TAG, "update" + b);
@@ -105,10 +113,11 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
         try {
             //new method
             ArrayList<String> al = model.selectPOI();
-            Log.d(TAG, "Select POI");
-            Log.d(TAG, al.toString());
-            refreshDatapointFileFromArrayList1(al);
-            Log.d(TAG, "Do refresh");
+            Log.d(TAG,""+al.size());
+            for(int i=0;i<al.size();i++)
+            {
+                Log.d(TAG,al.get(i));
+            }
             Log.d(TAG, "UPDATENAME "+updateName.toString());
             Log.d(TAG, "UPDATELATLNG "+ updateLatLngList.toString());
             String sPoint = "";
@@ -470,6 +479,7 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
             outputStreamWriter.write("Id,Name,Lat,Lng\n");
             for (int i = 0; i < al.size(); i++) {
                 outputStreamWriter.write("" + al.get(i) + "\n");
+
             }
 
             outputStreamWriter.close();
