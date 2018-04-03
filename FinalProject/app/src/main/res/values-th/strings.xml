@@ -42,4 +42,5 @@
     <string name="reco">หน้าบันทึกเส้นทาง</string>
     <string name="recor">คุณต้องการบันทึกไปที่เส้นทาง</string>
     <string name="yn">ใช่หรือไม่</string>
+    <string name="POI">คุณต้องการบันทึกจุดสนใจเป็น</string>
 </resources>

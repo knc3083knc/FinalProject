@@ -166,9 +166,7 @@ public class RecControlActivity extends FragmentActivity implements
                     builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(RecControlActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
+                            dialog.dismiss();
 
                         }
 
@@ -219,9 +217,34 @@ public class RecControlActivity extends FragmentActivity implements
             @Override
             public void onClick(View v) {
                 String txt = text.getText().toString();
-                updateList.add(txt);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(RecControlActivity.this);
+                builder.setCancelable(true);
+                builder.setTitle(getString(R.string.reco));
+                builder.setMessage(getString(R.string.POI)+" "+txt+" "+getString(R.string.yn));
+                builder.setPositiveButton(getString(R.string.confirm),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String txt = text.getText().toString();
+                                updateList.add(txt);
+                                updateLocation();
+                                Log.d(TAG,"LAT = "+lat+" LONG"+lon+" "+recordUpdate);
+                            }
+                        });
+                builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+
+                    }
+
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
                 Log.d(TAG,"LAT = "+lat+" LONG"+lon+" "+recordUpdate);
-                updateLocation();
+
             }
         });
 
