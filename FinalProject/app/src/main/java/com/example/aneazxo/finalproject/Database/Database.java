@@ -24,7 +24,7 @@ public class Database extends SQLiteOpenHelper {
     private String fpath = Environment.getExternalStorageDirectory() + "/" + "MapData";
 
     private static final String DB_NAME = "My Point Data";
-    private static final int DB_VERSION = 5;
+    private static final int DB_VERSION = 9;
 
     public static final String TABLE_NAME = "Point";
     public static final String COL_ID = "pointId";
@@ -62,6 +62,13 @@ public class Database extends SQLiteOpenHelper {
                 + COL_LNG  + " TEXT, " + COL_ADJ + " TEXT);"
         );
 
+        db.execSQL(
+                "CREATE TABLE " + TABLE_NAME1 + "("
+                        + COL_ID1 + " INTEGER PRIMARY KEY, "
+                        + COL_NAME1 + " TEXT, " + COL_LAT1 + " TEXT, "
+                        + COL_LNG1  + " TEXT );"
+        );
+
 
         try {
             FileReader fileReader = new FileReader(fpath + "/" + fname);
@@ -85,6 +92,16 @@ public class Database extends SQLiteOpenHelper {
                             + "', '" + str[2]
                             + "', '" + str[3]
                             + "', '" + str[4]
+                            + "');");
+                }
+                while ((readLine1 = br1.readLine()) != null) {
+                    String[] str = readLine1.split(",");
+                    db.execSQL("INSERT INTO " + TABLE_NAME1
+                            + " (" + COL_ID1 + ", " + COL_NAME1 + ", " + COL_LAT1
+                            + ", " + COL_LNG1 +") VALUES (" + str[0]
+                            + ", '" + str[1]
+                            + "', '" + str[2]
+                            + "', '" + str[3]
                             + "');");
                 }
             } catch (SQLiteConstraintException e) {
@@ -167,6 +184,8 @@ public class Database extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion
             , int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME1);
+
         onCreate(db);
     }
 }

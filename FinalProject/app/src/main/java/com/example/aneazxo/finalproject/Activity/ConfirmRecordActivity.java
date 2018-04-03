@@ -114,10 +114,7 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
             //new method
             ArrayList<String> al = model.selectPOI();
             Log.d(TAG,""+al.size());
-            for(int i=0;i<al.size();i++)
-            {
-                Log.d(TAG,al.get(i));
-            }
+            Log.d(TAG,al.toString());
             Log.d(TAG, "UPDATENAME "+updateName.toString());
             Log.d(TAG, "UPDATELATLNG "+ updateLatLngList.toString());
             String sPoint = "";
@@ -206,7 +203,7 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
             //new method
             ArrayList<String> al = model.selectAllToArray();
             int[] checkPoint = new int[latlngList.size()];
-
+            Log.d(TAG,"size of Path = "+al.toString()+"");
             //prepare -1 set and nearby point set
             for (int i = 0; i < latlngList.size(); i++) {
                 double recLat = latlngList.get(i).latitude;
@@ -476,7 +473,7 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
             FileOutputStream fOut = new FileOutputStream(folder);
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fOut);
 
-            outputStreamWriter.write("Id,Name,Lat,Lng\n");
+            outputStreamWriter.write("InterestId,name,lat,lng\n");
             for (int i = 0; i < al.size(); i++) {
                 outputStreamWriter.write("" + al.get(i) + "\n");
 

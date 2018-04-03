@@ -3,6 +3,9 @@ package com.example.aneazxo.finalproject.Database;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import com.example.aneazxo.finalproject.Activity.ConfirmRecordActivity;
 
 import java.util.ArrayList;
 
