@@ -113,8 +113,8 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
         try {
             //new method
             ArrayList<String> al = model.selectPOI();
-            Log.d(TAG,""+al.size());
-            Log.d(TAG,al.toString());
+            Log.d(TAG,"Array of POI has size ="+al.size());
+            Log.d(TAG,"Array of POI has "+al.toString());
             Log.d(TAG, "UPDATENAME "+updateName.toString());
             Log.d(TAG, "UPDATELATLNG "+ updateLatLngList.toString());
             String sPoint = "";
