@@ -24,7 +24,8 @@ public class Database extends SQLiteOpenHelper {
     private String fpath = Environment.getExternalStorageDirectory() + "/" + "MapData";
 
     private static final String DB_NAME = "My Point Data";
-    private static final int DB_VERSION = 3;
+
+    private static final int DB_VERSION = 9;
 
     public static final String TABLE_NAME = "Point";
     public static final String COL_ID = "pointId";
@@ -51,7 +52,9 @@ public class Database extends SQLiteOpenHelper {
 
     public void onCreate(SQLiteDatabase db) {
         String fname = "";
+        String fname1 = "";
         fname = Debug.ON? Tool.fname_debug: Tool.fname_user;
+        fname1 = Debug.ON? Tool.fname_debug1: Tool.fname_user1;
 
         db.execSQL(
                 "CREATE TABLE " + TABLE_NAME + "("
@@ -60,12 +63,24 @@ public class Database extends SQLiteOpenHelper {
                 + COL_LNG  + " TEXT, " + COL_ADJ + " TEXT);"
         );
 
+        db.execSQL(
+                "CREATE TABLE " + TABLE_NAME1 + "("
+                        + COL_ID1 + " INTEGER PRIMARY KEY, "
+                        + COL_NAME1 + " TEXT, " + COL_LAT1 + " TEXT, "
+                        + COL_LNG1  + " TEXT );"
+        );
+
 
         try {
             FileReader fileReader = new FileReader(fpath + "/" + fname);
             BufferedReader br = new BufferedReader(fileReader);
             String readLine = null;
             readLine = br.readLine();
+
+            FileReader fileReader1 = new FileReader(fpath + "/" + fname1);
+            BufferedReader br1 = new BufferedReader(fileReader1);
+            String readLine1 = null;
+            readLine1 = br1.readLine();
 
             try {
                 while ((readLine = br.readLine()) != null) {
@@ -78,6 +93,16 @@ public class Database extends SQLiteOpenHelper {
                             + "', '" + str[2]
                             + "', '" + str[3]
                             + "', '" + str[4]
+                            + "');");
+                }
+                while ((readLine1 = br1.readLine()) != null) {
+                    String[] str = readLine1.split(",");
+                    db.execSQL("INSERT INTO " + TABLE_NAME1
+                            + " (" + COL_ID1 + ", " + COL_NAME1 + ", " + COL_LAT1
+                            + ", " + COL_LNG1 +") VALUES (" + str[0]
+                            + ", '" + str[1]
+                            + "', '" + str[2]
+                            + "', '" + str[3]
                             + "');");
                 }
             } catch (SQLiteConstraintException e) {
@@ -112,6 +137,18 @@ public class Database extends SQLiteOpenHelper {
                 br = new BufferedReader(fileReader);
                 readLine = null;
                 readLine = br.readLine();
+
+                fname1 = "";
+                fname1 = Debug.ON? Tool.fname_debug1: Tool.fname_user1;
+                File mapData1 = new File(Tool.fpath + "/" + fname1);
+                File backupData1 = new File(Tool.fpath + "/" + "backup1.csv");
+                Tool.copyFileUsingChannel(backupData1, mapData1);
+
+                // INSERT
+                fileReader1 = new FileReader(fpath + "/" + fname1);
+                br1 = new BufferedReader(fileReader1);
+                readLine1 = null;
+                readLine1 = br1.readLine();
                 try {
                     while ((readLine = br.readLine()) != null) {
                         String[] str = readLine.split(",");
@@ -123,6 +160,16 @@ public class Database extends SQLiteOpenHelper {
                                 + "', '" + str[2]
                                 + "', '" + str[3]
                                 + "', '" + str[4]
+                                + "');");
+                    }
+                    while ((readLine1 = br1.readLine()) != null) {
+                        String[] str = readLine1.split(",");
+                        db.execSQL("INSERT INTO " + TABLE_NAME1
+                                + " (" + COL_ID1 + ", " + COL_NAME1 + ", " + COL_LAT1
+                                + ", " + COL_LNG1 +") VALUES (" + str[0]
+                                + ", '" + str[1]
+                                + "', '" + str[2]
+                                + "', '" + str[3]
                                 + "');");
                     }
                 } catch (IOException ex) {
@@ -138,6 +185,8 @@ public class Database extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion
             , int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME1);
+
         onCreate(db);
     }
 }

@@ -73,6 +73,14 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
                 File backupFileName = new File(Tool.fpath + "/" + "backup.csv");
                 Tool.copyFileUsingChannel(oldFile, backupFileName);
 
+                String fname1 = "";
+                fname1 = Debug.ON ? Tool.fname_debug1 : Tool.fname_user1;
+
+                File oldFile1 = new File(Tool.fpath + "/" + fname1);
+                File backupFileName1 = new File(Tool.fpath + "/" + "backup1.csv");
+                Tool.copyFileUsingChannel(oldFile1, backupFileName1);
+
+
                 // write file
                 boolean b = addUpdateList(updateName);
                 Log.d(TAG, "update" + b);
@@ -105,10 +113,9 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
         try {
             //new method
             ArrayList<String> al = model.selectPOI();
-            Log.d(TAG, "Select POI");
-            Log.d(TAG, al.toString());
 
-
+            Log.d(TAG,"Array of POI has size ="+al.size());
+            Log.d(TAG,"Array of POI has "+al.toString());
             Log.d(TAG, "UPDATENAME "+updateName.toString());
             Log.d(TAG, "UPDATELATLNG "+ updateLatLngList.toString());
             String sPoint = "";
@@ -197,7 +204,7 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
             //new method
             ArrayList<String> al = model.selectAllToArray();
             int[] checkPoint = new int[latlngList.size()];
-
+            Log.d(TAG,"size of Path = "+al.toString()+"");
             //prepare -1 set and nearby point set
             for (int i = 0; i < latlngList.size(); i++) {
                 double recLat = latlngList.get(i).latitude;
@@ -467,9 +474,10 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
             FileOutputStream fOut = new FileOutputStream(folder);
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fOut);
 
-            outputStreamWriter.write("Id,Name,Lat,Lng\n");
+            outputStreamWriter.write("InterestId,name,lat,lng\n");
             for (int i = 0; i < al.size(); i++) {
                 outputStreamWriter.write("" + al.get(i) + "\n");
+
             }
 
             outputStreamWriter.close();
