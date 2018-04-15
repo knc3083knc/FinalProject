@@ -107,8 +107,8 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
             ArrayList<String> al = model.selectPOI();
             Log.d(TAG, "Select POI");
             Log.d(TAG, al.toString());
-            refreshDatapointFileFromArrayList1(al);
-            Log.d(TAG, "Do refresh");
+
+
             Log.d(TAG, "UPDATENAME "+updateName.toString());
             Log.d(TAG, "UPDATELATLNG "+ updateLatLngList.toString());
             String sPoint = "";

@@ -24,7 +24,7 @@ public class Database extends SQLiteOpenHelper {
     private String fpath = Environment.getExternalStorageDirectory() + "/" + "MapData";
 
     private static final String DB_NAME = "My Point Data";
-    private static final int DB_VERSION = 2;
+    private static final int DB_VERSION = 3;
 
     public static final String TABLE_NAME = "Point";
     public static final String COL_ID = "pointId";
