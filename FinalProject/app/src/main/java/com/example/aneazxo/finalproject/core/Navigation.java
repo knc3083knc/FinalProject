@@ -31,11 +31,13 @@ public class Navigation {
     private int point = 0;
     private int target = -1;
     private CountDownTimer echoTimer;
-
+    private String POI = Tool.msgNoNearby;
+    private double dist_temp;
     private double lat;
     private double lon;
     private int distance_total;
     private int distance_balance;
+    private int distance_poi;
     private ArrayList<LatLng> latlngList = new ArrayList<LatLng>();
     private boolean isExecuted;
     private int disFoward = 0;
@@ -80,6 +82,7 @@ public class Navigation {
             }
 
             isExecuted = true;
+
             if (!findNearby().equals("error")) {
                 //nearBy.setText(Tool.msgNearWhere + findNearby());
                 ans.add("nearby");
@@ -96,6 +99,9 @@ public class Navigation {
         //distance.setText("เหลือ: " + distance_balance + "เมตร, จาก " + distance_total + Tool.msgMeter);
         ans.add("distance");
         ans.add("เหลือ: " + distance_balance + "เมตร, จาก " + distance_total + Tool.msgMeter);
+
+        ans.add("poi");
+        ans.add(Tool.msgPOIWhere + findPOI() + "ระยะ "+ (int)dist_temp+" เมตร");
 
         if (latlngList.size() > 0 && point < latlngList.size()) {
 
@@ -114,6 +120,10 @@ public class Navigation {
                     //nearBy.setText(Tool.msgNearWhere + findNearby());
                     ans.add("nearby");
                     ans.add(Tool.msgNearWhere + findNearby());
+                }
+                if (!findPOI().equals("error")) {//เพิ่มใหม่
+                    ans.add("poi");
+                    ans.add(Tool.msgPOIWhere + findPOI());
                 }
                 //Speaker.getInstance(context).speak(Tool.msgNearWhere + findNearby());
                 ans.add("speak");
@@ -223,7 +233,39 @@ public class Navigation {
         latlngList.clear();
         state = "idle";
     }
+    public String findPOI() {
+        Cursor tempPOI = model.selectAllPOI();
+        Log.d(TAG,tempPOI.toString());
+        tempPOI.moveToFirst();
 
+         dist_temp = Tool.distFrom(
+                lat,
+                lon,
+                Double.parseDouble(tempPOI.getString(tempPOI.getColumnIndex(Database.COL_LAT1))),
+                Double.parseDouble(tempPOI.getString(tempPOI.getColumnIndex(Database.COL_LNG1)))
+        );
+
+
+
+        while (!tempPOI.isAfterLast()) {
+            double lat2 = Double.parseDouble(tempPOI.getString(tempPOI.getColumnIndex(Database.COL_LAT1)));
+            double lng2 = Double.parseDouble(tempPOI.getString(tempPOI.getColumnIndex(Database.COL_LNG1)));
+            String name = tempPOI.getString(tempPOI.getColumnIndex(Database.COL_NAME1));
+            double dist = Tool.distFrom(lat, lon, lat2, lng2);
+
+
+            if (dist <= dist_temp) {
+                dist_temp = dist;
+                POI = name;
+
+
+            }
+
+            tempPOI.moveToNext();
+        }
+        Log.d(TAG,POI.toString());
+        return POI;
+    }
     public String findNearby() {
         Cursor tempCursor = model.selectAll();
         String nearbyName = Tool.msgNoNearby;
@@ -270,6 +312,12 @@ public class Navigation {
         for (int i = point; i < latlngList.size() - 1; i++) {
             totalDistance += (int) Tool.distFrom(latlngList.get(i).latitude, latlngList.get(i).longitude, latlngList.get(i + 1).latitude, latlngList.get(i + 1).longitude);
         }
+        return totalDistance;
+    }
+    public int totalDistancePOI (String point) {
+        int totalDistance = 0;
+
+
         return totalDistance;
     }
 

@@ -1,5 +1,6 @@
 package com.example.aneazxo.finalproject.Activity;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -64,7 +65,7 @@ public class NavCamDisActivity extends AppCompatActivity implements
     private TextView nearBy;
     private TextView destination;
     private TextView distance;
-
+    private TextView poi;
     private TextView direction;
     private Button stopNav;
 
@@ -150,6 +151,7 @@ public class NavCamDisActivity extends AppCompatActivity implements
         destination = (TextView) findViewById(R.id.destination);
         distance = (TextView) findViewById(R.id.distance);
         direction = (TextView) findViewById(R.id.direction);
+        poi = (TextView) findViewById(R.id.poi);
         stopNav = (Button) findViewById(R.id.stopNavBtn);
 
         AccessibilityManager am = (AccessibilityManager) getSystemService(ACCESSIBILITY_SERVICE);
@@ -327,8 +329,12 @@ public class NavCamDisActivity extends AppCompatActivity implements
     public void doActivity (ArrayList<String> activity) { //have this method in NavCamEnActivity and NavCamDisActivity
         Intent intent = new Intent(NavCamDisActivity.this, MainActivity.class);
         for (int i = 0; i < activity.size(); i++) {
-            //Log.d(TAG, "doActivity: " + activity.get(i));
+            Log.d(TAG, "doActivity: " + activity.get(i));
             switch (activity.get(i)) {
+                case "poi":
+                    i++;
+                    poi.setText(activity.get(i));
+                    break;
                 case "nearby":
                     i++;
                     nearBy.setText(activity.get(i));

@@ -80,6 +80,10 @@ public class DataModel {
                 + Database.COL_LAT + ", " + Database.COL_LNG + ", "
                 + Database.COL_ADJ + " FROM " + Database.TABLE_NAME, null);
     }
+    public Cursor selectAllPOI () {
+        return mDb.rawQuery("SELECT " + Database.COL_ID1 + ", " + Database.COL_NAME1 + ", "
+                + Database.COL_LAT1 + ", " + Database.COL_LNG1 +" FROM " + Database.TABLE_NAME1, null);
+    }
 
     public Cursor selectWhereId(String id) {
         return mDb.rawQuery("SELECT " + Database.COL_ID + ", " + Database.COL_NAME + ", "

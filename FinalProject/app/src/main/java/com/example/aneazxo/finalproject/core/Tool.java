@@ -36,6 +36,7 @@ public class Tool {
     public static final String msgArrive = "มาถึง, ";
     public static final String msgAlready = " แล้ว";
     public static final String msgNearWhere = "อยู่ใกล้กับ ";
+    public static final String msgPOIWhere = "มีจุดที่สนใจชื่อ ";
     public static final String msgRecordStart = "เริ่มการบันทึก";
     public static final String msgTurnBack = "หันหลังกลับ";
     public static final String msgTurnLeft = "เลี้ยวซ้าย";
