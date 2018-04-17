@@ -68,7 +68,7 @@ public class NavCamDisActivity extends AppCompatActivity implements
     private TextView poi;
     private TextView direction;
     private Button stopNav;
-
+    private Button overView;
     private DataModel model;
 
     private Navigation nav;
@@ -125,6 +125,12 @@ public class NavCamDisActivity extends AppCompatActivity implements
             startActivity(intent);
             finish();
         }
+        overView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         stopNav.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,7 +159,7 @@ public class NavCamDisActivity extends AppCompatActivity implements
         direction = (TextView) findViewById(R.id.direction);
         poi = (TextView) findViewById(R.id.poi);
         stopNav = (Button) findViewById(R.id.stopNavBtn);
-
+        overView = (Button) findViewById(R.id.OverviewBtn);
         AccessibilityManager am = (AccessibilityManager) getSystemService(ACCESSIBILITY_SERVICE);
         isExploreByTouchEnabled = am.isTouchExplorationEnabled();
 
