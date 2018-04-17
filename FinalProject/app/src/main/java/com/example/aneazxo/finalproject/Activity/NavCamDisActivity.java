@@ -30,8 +30,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.aneazxo.finalproject.Database.DataModel;
+import com.example.aneazxo.finalproject.Database.Database;
 import com.example.aneazxo.finalproject.R;
 import com.example.aneazxo.finalproject.core.Navigation;
+import com.example.aneazxo.finalproject.core.OverView;
 import com.example.aneazxo.finalproject.core.Speaker;
 import com.example.aneazxo.finalproject.core.Tool;
 import com.google.android.gms.common.ConnectionResult;
@@ -42,6 +44,7 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -72,6 +75,9 @@ public class NavCamDisActivity extends AppCompatActivity implements
     private DataModel model;
 
     private Navigation nav;
+    private OverView overV;
+    private double lat;
+    private double lng;
     private Sensor sensor;
     private static SensorManager sensorService;
     private int deviceSelected = 0;
@@ -128,7 +134,29 @@ public class NavCamDisActivity extends AppCompatActivity implements
         overView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                double lat1=lat;
+                double lng1=lng;
+                String dest = (String) destination.getText();
+                ArrayList<String> overview = new ArrayList<String>();
+                LatLng startpoint = new LatLng(lat1,lng1);
+                overview = overV.locationChanged(startpoint,dest);
+                Log.d(TAG,overview.toString()+"ppp");
+                Log.d(TAG,overV.path.toString()+"ppp");
+                for (int i=0;i<overV.path.size();i++)
+                {
+                    String num = overV.path.get(i).toString();
+                    Log.d(TAG,num+"ppp");
+                    Cursor temp = model.selectWhereId(num);
+                    temp.moveToFirst();
+                    if (!temp.isAfterLast()) {
+                        lat1 = Double.parseDouble(temp.getString(temp.getColumnIndex(Database.COL_LAT)));
+                        lng1 = Double.parseDouble(temp.getString(temp.getColumnIndex(Database.COL_LNG)));
+                        startpoint = new LatLng(lat1,lng1);
+                        overview = overV.locationChanged(startpoint,dest);
+                        Log.d(TAG,overview.toString()+"ppp");
+                    }
 
+                }
             }
         });
 
@@ -167,6 +195,7 @@ public class NavCamDisActivity extends AppCompatActivity implements
         model = new DataModel(this);
 
         nav = new Navigation(NavCamDisActivity.this);
+        overV = new OverView(NavCamDisActivity.this);
 
         sensorService = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensor = sensorService.getDefaultSensor(Sensor.TYPE_ORIENTATION);
@@ -234,6 +263,8 @@ public class NavCamDisActivity extends AppCompatActivity implements
 
     @Override
     public void onLocationChanged(Location location) {
+        lat = location.getLatitude();
+        lng = location.getLongitude();
         if (deviceSelected == 0) {
             ArrayList<String> activity = nav.locationChanged(location, (String) destination.getText());
             doActivity(activity);
