@@ -370,16 +370,16 @@ public class OverView {
             ans = Tool.msgTurnBack;
             compassStateChange = Tool.msgTurnBack;
         } else if (degree > angleMap && Math.abs(angleMap - degree) > 180) {
-            ans = Tool.msgTurnRight + ": " + (int) (360 - Math.abs(angleMap - degree)) + (char) 0x00b0;
+            ans = Tool.msgTurnRight ;
             compassStateChange = Tool.msgTurnRight;
         } else if (degree < angleMap && Math.abs(angleMap - degree) > 180) {
-            ans = Tool.msgTurnLeft + ": " + (int) (360 - Math.abs(angleMap - degree)) + (char) 0x00b0;
+            ans = Tool.msgTurnLeft ;
             compassStateChange = Tool.msgTurnLeft;
         } else if (degree > angleMap) {
-            ans = Tool.msgTurnLeft + ": " + (int) Math.abs(angleMap - degree) + (char) 0x00b0;
+            ans = Tool.msgTurnLeft ;
             compassStateChange = Tool.msgTurnLeft;
         } else if (degree < angleMap) {
-            ans = Tool.msgTurnRight + ": " + (int) Math.abs(angleMap - degree) + (char) 0x00b0;
+            ans = Tool.msgTurnRight ;
             compassStateChange = Tool.msgTurnRight;
         }
         return ans;
