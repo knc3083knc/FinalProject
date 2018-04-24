@@ -73,7 +73,7 @@ public class NavCamDisActivity extends AppCompatActivity implements
     private Button stopNav;
     private Button overView;
     private DataModel model;
-    private ArrayList<String> SpeakOverview;
+    public ArrayList<String> SpeakOverview;
     private Navigation nav;
     private OverView overV;
     private double lat;
@@ -81,7 +81,7 @@ public class NavCamDisActivity extends AppCompatActivity implements
     private Sensor sensor;
     private static SensorManager sensorService;
     private int deviceSelected = 0;
-
+    public String stateOver = "idle";
     //private Speaker speaker;
     private Vibrator vibrator;
     private CountDownTimer echoTimer;
@@ -134,49 +134,7 @@ public class NavCamDisActivity extends AppCompatActivity implements
         overView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SpeakOverview = new ArrayList<String>();
-                double angleMap =0;
-                double disFoward =0;
-                String dest = (String) destination.getText();
-                ArrayList<String> overview = new ArrayList<String>();
-                LatLng startpoint = new LatLng(lat,lng);
-                overview = overV.locationChanged(startpoint,dest);
-                Cursor first = model.selectWhereId(overV.path.get(0).toString());
-                first.moveToFirst();
-                double lat1=Double.parseDouble(first.getString(first.getColumnIndex(Database.COL_LAT)));
-                double lng1=Double.parseDouble(first.getString(first.getColumnIndex(Database.COL_LNG)));
-                Log.d(TAG,"First lat lng ="+lat1+" "+lng1+"pppp");
-                angleMap = Tool.angleFormNorth(lat, lng, lat1, lng1);
-                disFoward = (int) Tool.distFrom(lat, lng, lat1, lng1);
-                Log.d(TAG ,"Anglemap ="+angleMap+"pppp");
-                Log.d(TAG,"Dist ="+disFoward+"pppp");
-                Log.d(TAG,overview.toString()+"ppp");
-
-                for (int i=1;i<overV.path.size();i++)
-                {
-                    String num = overV.path.get(i).toString();
-
-                    Cursor temp = model.selectWhereId(num);
-                    temp.moveToFirst();
-                    if (!temp.isAfterLast()) {
-                        lat = lat1; // สลับตำแหน่ง
-                        lng = lng1;
-                        lat1 = Double.parseDouble(temp.getString(temp.getColumnIndex(Database.COL_LAT)));
-                        lng1 = Double.parseDouble(temp.getString(temp.getColumnIndex(Database.COL_LNG)));
-                        angleMap = Tool.angleFormNorth(lat, lng, lat1, lng1); //มุมเทียบ
-                        SpeakOverview.add("หันไปทาง"+angleMap);
-                        disFoward = (int) Tool.distFrom(lat, lng, lat1, lng1); // ระยะทาง
-                        SpeakOverview.add("เป็นระยะทาง"+disFoward+"เมตร");
-                        Log.d(TAG,SpeakOverview.toString()+"ppp");
-                        Log.d(TAG,"LAT LNG="+lat+" "+lng+"ppp");
-                        Log.d(TAG,"LAT1 LNG1="+lat1+" "+lng1+"ppp");
-                        startpoint = new LatLng(lat1,lng1);
-                        overview = overV.locationChanged(startpoint,dest);
-                        Log.d(TAG,overview.toString()+"ppp");
-
-                    }
-
-                }
+                findOverview();
             }
         });
 
@@ -198,6 +156,53 @@ public class NavCamDisActivity extends AppCompatActivity implements
                 finish();
             }
         });
+    }
+
+    public void findOverview() {
+
+            SpeakOverview = new ArrayList<String>();
+            SpeakOverview.add("เส้นทางเบื้องต้น");
+            String firstdirection = (String) direction.getText();
+            String[] firstdirec = firstdirection.split(":");
+            SpeakOverview.add(firstdirec[0]);
+            int disFoward = 0;
+            String dest = (String) destination.getText();
+            ArrayList<String> overview = new ArrayList<String>();
+            LatLng startpoint = new LatLng(lat, lng);
+            overview = overV.locationChanged(startpoint, dest);
+            Log.d(TAG, overview.toString() + "ppp");
+            Cursor first = model.selectWhereId(overV.path.get(0).toString());
+            first.moveToFirst();
+            double lat1 = Double.parseDouble(first.getString(first.getColumnIndex(Database.COL_LAT)));
+            double lng1 = Double.parseDouble(first.getString(first.getColumnIndex(Database.COL_LNG)));
+            disFoward = (int) Tool.distFrom(lat, lng, lat1, lng1);
+            SpeakOverview.add("เป็นระยะทาง" + disFoward + "เมตร");
+
+            for (int i = 1; i < overV.path.size(); i++) {
+                String num = overV.path.get(i).toString();
+                Cursor temp = model.selectWhereId(num);
+                temp.moveToFirst();
+                if (!temp.isAfterLast()) {
+                    lat = lat1; // สลับตำแหน่ง
+                    lng = lng1;
+                    lat1 = Double.parseDouble(temp.getString(temp.getColumnIndex(Database.COL_LAT)));
+                    lng1 = Double.parseDouble(temp.getString(temp.getColumnIndex(Database.COL_LNG)));
+                    disFoward = (int) Tool.distFrom(lat, lng, lat1, lng1); // ระยะทาง
+                    startpoint = new LatLng(lat1, lng1);
+                    overview = overV.locationChanged(startpoint, dest);//หาทิศ
+                    Log.d(TAG, overview.toString() + "PPP");
+                    SpeakOverview.add(overview.get(0));
+                    SpeakOverview.add("เป็นระยะทาง" + disFoward + "เมตร");
+
+                }
+
+            }
+
+
+            Log.d(TAG, SpeakOverview.toString() + "ppp");
+            notification(SpeakOverview.toString());
+            overV = new OverView(NavCamDisActivity.this);
+
     }
 
     private void init() {

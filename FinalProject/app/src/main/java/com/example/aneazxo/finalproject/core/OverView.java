@@ -8,6 +8,7 @@ import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.util.Log;
 
+import com.example.aneazxo.finalproject.Activity.NavCamDisActivity;
 import com.example.aneazxo.finalproject.Database.DataModel;
 import com.example.aneazxo.finalproject.Database.Database;
 import com.example.aneazxo.finalproject.find_path.algs.AStar;
@@ -73,28 +74,24 @@ public class OverView {
 
         if (isExecuted == false) {
             String ansText = execute(text);
-            ans.add(ansText);
             if (ansText.contains(Tool.msgTryAgain) || ansText.contains(Tool.msgArrive)) {
-                return ans;
+
             }
 
             isExecuted = true;
 
             if (!findNearby().equals("error")) {
                 //nearBy.setText(Tool.msgNearWhere + findNearby());
-                ans.add(Tool.msgNearWhere + findNearby());
             }
             else {
                 //nearBy.setText(Tool.msgNoNearBy);
-                ans.add(Tool.msgNoNearBy);
             }
         }
 
         distance_balance = totalDistance(point);
         //distance.setText("เหลือ: " + distance_balance + "เมตร, จาก " + distance_total + Tool.msgMeter);
 
-        ans.add("เหลือ: " + distance_balance + "เมตร, จาก " + distance_total + Tool.msgMeter);
-        ans.add(Tool.msgPOIWhere + findPOI() + "ระยะ "+ (int)dist_temp+" เมตร");
+
 
         if (latlngList.size() > 0 && point < latlngList.size()) {
 
@@ -111,14 +108,11 @@ public class OverView {
                 if (!findNearby().equals("error")) {
                     //nearBy.setText(Tool.msgNearWhere + findNearby());
 
-                    ans.add(Tool.msgNearWhere + findNearby());
                 }
                 if (!findPOI().equals("error")) {//เพิ่มใหม่
 
-                    ans.add(Tool.msgPOIWhere + findPOI());
                 }
                 //Speaker.getInstance(context).speak(Tool.msgNearWhere + findNearby());
-                ans.add(Tool.msgNearWhere + findNearby());
                 //delayAndEcho(5000);
 
                 Log.d(TAG, "onLocationChanged: point=" + point);
@@ -127,7 +121,6 @@ public class OverView {
             ans.add(compass(disFoward));
         } else if (point >= latlngList.size() && latlngList.size() != 0) {
             //Speaker.getInstance(context).speak(Tool.msgArrive + text + Tool.msgAlready);
-            ans.add(Tool.msgArrive + text + Tool.msgAlready);
             clearForBegin();
             //stopEchoCompass();
 
@@ -142,8 +135,6 @@ public class OverView {
 
     private String execute(String text) {
         //is arrived?
-        if (isArrived(text))
-            return Tool.msgArrive + text + Tool.msgAlready;
 
         String ans = "";
         Cursor tempCursor = model.selectWhereName(text);
@@ -171,7 +162,6 @@ public class OverView {
             if (path.size() == 0) {
                 clearForBegin();
                 //Speaker.getInstance(context).speak(Tool.msgNoPath + text + Tool.msgTryAgain);
-                ans = Tool.msgNoPath + text + Tool.msgTryAgain;
             } else {
                 Log.d(TAG, "path: " + path.toString());
                 for (int i = 0; i < path.size(); i++) {
@@ -190,7 +180,6 @@ public class OverView {
 
                 distance_total = totalDistance(point);
                 //Speaker.getInstance(context).speak(text + " ระยะ " + distance_total + "m");
-                ans = text + " ระยะ " + distance_total + "m";
 /*
                 PolylineOptions polylineOptions = new PolylineOptions();
                 polylineOptions.add(new LatLng(this.lat, lon));
@@ -206,7 +195,6 @@ public class OverView {
         } else {
             clearForBegin();
             //Speaker.getInstance(context).speak(Tool.msgNotFound + text + Tool.msgTryAgain);
-            ans = Tool.msgNotFound + text + Tool.msgTryAgain;
             /*
             Intent intent = new Intent(context, SelectDesActivity.class);
             startActivity(intent);
