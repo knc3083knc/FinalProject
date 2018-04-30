@@ -162,6 +162,8 @@ public class NavCamDisActivity extends AppCompatActivity implements
 
             SpeakOverview = new ArrayList<String>();
             SpeakOverview.add("เส้นทางเบื้องต้น");
+            String fword = Tool.msgForward;
+            Log.d(TAG,fword+"aaa");
             String firstdirection = (String) direction.getText();
             String[] firstdirec = firstdirection.split(":");
             SpeakOverview.add(firstdirec[0]);
@@ -176,7 +178,13 @@ public class NavCamDisActivity extends AppCompatActivity implements
             double lat1 = Double.parseDouble(first.getString(first.getColumnIndex(Database.COL_LAT)));
             double lng1 = Double.parseDouble(first.getString(first.getColumnIndex(Database.COL_LNG)));
             disFoward = (int) Tool.distFrom(lat, lng, lat1, lng1);
-            SpeakOverview.add("เป็นระยะทาง" + disFoward + "เมตร");
+            if(SpeakOverview.get(1).contains(fword)){
+                SpeakOverview.add("");
+            }
+            else {
+                SpeakOverview.add("เป็นระยะทาง" + disFoward + "เมตร");
+
+            }
 
             for (int i = 1; i < overV.path.size(); i++) {
                 String num = overV.path.get(i).toString();
@@ -192,7 +200,15 @@ public class NavCamDisActivity extends AppCompatActivity implements
                     overview = overV.locationChanged(startpoint, dest);//หาทิศ
                     Log.d(TAG, overview.toString() + "PPP");
                     SpeakOverview.add(overview.get(0));
-                    SpeakOverview.add("เป็นระยะทาง" + disFoward + "เมตร");
+
+                    if(overview.get(0).contains(fword)){
+                        SpeakOverview.add("");
+                    }
+                    else {
+                        SpeakOverview.add("เป็นระยะทาง" + disFoward + "เมตร");
+
+                    }
+
 
                 }
 
