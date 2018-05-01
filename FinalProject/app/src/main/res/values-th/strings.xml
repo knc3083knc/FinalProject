@@ -43,4 +43,16 @@
     <string name="recor">คุณต้องการบันทึกไปที่เส้นทาง</string>
     <string name="yn">ใช่หรือไม่</string>
     <string name="POI">คุณต้องการบันทึกจุดสนใจเป็น</string>
+    <string name="msgNotFound">ไม่พบ</string>
+    <string name="msgNoPath">ไม่พบเส้นทาง</string>
+    <string name="msgWelcome">ยินดีต้อนรับ, สวัสดีค่ะ</string>
+    <string name="msgArrive">มาถึง,</string>
+    <string name="msgAlready">แล้ว</string>
+    <string name="msgNearWhere">อยู่ใกล้กับ </string>
+    <string name="msgPOIWhere">มีจุดที่สนใจชื่อ</string>
+    <string name="msgRecordStart">เริ่มการบันทึก</string>
+    <string name="msgTurnBack">หันหลังกลับ</string>
+    <string name="msgTurnLeft">เลี้ยวซ้าย</string>
+    <string name="msgTurnRight">เลี้ยวขวา</string>
+    <string name="msgForward">เดินหน้า</string>
 </resources>
