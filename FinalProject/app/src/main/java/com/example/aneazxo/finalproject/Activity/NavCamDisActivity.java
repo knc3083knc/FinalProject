@@ -86,7 +86,7 @@ public class NavCamDisActivity extends AppCompatActivity implements
     private Vibrator vibrator;
     private CountDownTimer echoTimer;
     private boolean isExploreByTouchEnabled = false;
-
+    private Tool Tool;
     //garmin glo
     private static final int REQUEST_ENABLE_BT = 1;
     private BluetoothAdapter btAdapter;
@@ -161,7 +161,7 @@ public class NavCamDisActivity extends AppCompatActivity implements
     public void findOverview() {
 
             SpeakOverview = new ArrayList<String>();
-            SpeakOverview.add("เส้นทางเบื้องต้น");
+            SpeakOverview.add(getString(R.string.overview));
             String fword = Tool.msgForward;
             Log.d(TAG,fword+"aaa");
             String firstdirection = (String) direction.getText();
@@ -182,7 +182,7 @@ public class NavCamDisActivity extends AppCompatActivity implements
                 SpeakOverview.add("");
             }
             else {
-                SpeakOverview.add("เป็นระยะทาง" + disFoward + "เมตร");
+                SpeakOverview.add(getString(R.string.overviewd) + disFoward + Tool.msgMeter);
 
             }
 
@@ -205,7 +205,7 @@ public class NavCamDisActivity extends AppCompatActivity implements
                         SpeakOverview.add("");
                     }
                     else {
-                        SpeakOverview.add("เป็นระยะทาง" + disFoward + "เมตร");
+                        SpeakOverview.add(getString(R.string.overviewd) + disFoward + Tool.msgMeter);
 
                     }
 
@@ -234,7 +234,7 @@ public class NavCamDisActivity extends AppCompatActivity implements
 
         //database
         model = new DataModel(this);
-
+        Tool = new Tool(this);
         nav = new Navigation(NavCamDisActivity.this);
         overV = new OverView(NavCamDisActivity.this);
 

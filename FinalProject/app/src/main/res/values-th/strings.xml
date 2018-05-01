@@ -55,4 +55,24 @@
     <string name="msgTurnLeft">เลี้ยวซ้าย</string>
     <string name="msgTurnRight">เลี้ยวขวา</string>
     <string name="msgForward">เดินหน้า</string>
+    <string name="msgMeter">เมตร</string>
+    <string name="msgCareStreet">ระวังวัตถุข้างหน้า</string>
+    <string name="msgLeft">ทางซ้าย</string>
+    <string name="msgRight">ทางขวา</string>
+    <string name="msgPole">เสา</string>
+    <string name="msgDegree">องศา</string>
+    <string name="msgTryAgain">ลองใหม่อีกครั้ง</string>
+    <string name="msgRecordComplete">บันทึกสำเร็จแล้ว</string>
+    <string name="msgNoNearBy">ไม่พบสถานที่ใกล้เคียง</string>
+    <string name="msgStopNav">หยุดการนำทางแล้ว</string>
+    <string name="msgStopRec">หยุดการบันทึกเส้นทาง</string>
+    <string name="msgAccessory">ไม่สามารถเชื่อมต่ออุปกรณ์เสริม, กรุณาตรวจสอบการจับคู่อุปกรณ์เสริมของคุณ</string>
+    <string name="msgNoDes">ยังไม่มีเส้นทาง, กรุณาบันทึกเส้นทางก่อน</string>
+    <string name="msgNoNearby">ไม่พบสถานที่ใกล้เคียง</string>
+    <string name="msgPrepare">สามารถกดปุ่มเริ่มการบันทึกเมื่อพร้อม</string>
+    <string name="overview">เส้นทางเบื้องต้น</string>
+    <string name="overviewd">เป็นระยะทาง</string>
+    <string name="remaining">คงเหลือระยะทาง</string>
+    <string name="from">จาก</string>
+    <string name="distance">ระยะ</string>
 </resources>

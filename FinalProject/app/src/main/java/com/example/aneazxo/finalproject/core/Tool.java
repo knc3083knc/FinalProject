@@ -1,5 +1,6 @@
 package com.example.aneazxo.finalproject.core;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -17,12 +18,17 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
+import android.content.res.Resources;
+
+import com.example.aneazxo.finalproject.Activity.MainActivity;
+import com.example.aneazxo.finalproject.R;
 
 /**
  * Created by AneazXo on 29/4/2560.
  */
 
 public class Tool {
+    public Context mContext;
 
     public static final String fname_user = "pointdata_user.csv";
     public static final String fname_user1 = "interestdata_user.csv";
@@ -30,39 +36,76 @@ public class Tool {
     public static final String fname_debug1 = "interest_debug.csv";
     public static final String settingFname = "settings.txt";
     public static final String fpath = Environment.getExternalStorageDirectory() + "/" + "MapData";
-    public static final String msgNotFound = "ไม่พบ";
-    public static final String msgNoPath = "ไม่พบเส้นทาง";
-    public static final String msgWelcome = "ยินดีต้อนรับ, สวัสดีค่ะ";
-    public static final String msgArrive = "มาถึง, ";
-    public static final String msgAlready = " แล้ว";
-    public static final String msgNearWhere = "อยู่ใกล้กับ ";
-    public static final String msgPOIWhere = "มีจุดที่สนใจชื่อ ";
-    public static final String msgRecordStart = "เริ่มการบันทึก";
-    public static final String msgTurnBack = "หันหลังกลับ";
-    public static final String msgTurnLeft = "เลี้ยวซ้าย";
-    public static final String msgTurnRight = "เลี้ยวขวา";
-    public static final String msgForward = "เดินหน้า";
-    public static final String msgMeter = "เมตร";
-    public static final String msgCareStreet = "ระวังวัตถุข้างหน้า";
-    public static final String msgLeft = "ทางซ้าย";
-    public static final String msgRight = "ทางขวา";
-    public static final String msgPole = "เสา";
-    public static final String msgDegree = "องศา";
-    public static final String msgTryAgain = ", ลองใหม่อีกครั้ง";
-    public static final String msgRecordComplete = "บันทึกสำเร็จแล้ว";
-    public static final String msgNoNearBy = "ไม่พบสถานที่ใกล้เคียง";
-    public static final String msgStopNav = "หยุดการนำทางแล้ว";
-    public static final String msgStopRec = "หยุดการบันทึกเส้นทาง";
-    public static final String msgAccessory = "ไม่สามารถเชื่อมต่ออุปกรณ์เสริม, กรุณาตรวจสอบการจับคู่อุปกรณ์เสริมของคุณ";
-    public static final String msgNoDes = "ยังไม่มีเส้นทาง, กรุณาบันทึกเส้นทางก่อน";
-    public static final String msgNoNearby = "ไม่พบสถานที่ใกล้เคียง";
-    public static final String msgPrepare = "สามารถกดปุ่มเริ่มการบันทึกเมื่อพร้อม";
-
+    public static String msgNotFound;
+    public static String msgNoPath;
+    public static String msgWelcome;
+    public static String msgArrive ;
+    public static String msgAlready ;
+    public static String msgNearWhere ;
+    public static String msgPOIWhere ;
+    public static String msgRecordStart;
+    public static String msgTurnBack ;
+    public static String msgTurnLeft ;
+    public static String msgTurnRight;
+    public static String msgForward;
+    public static String msgMeter;
+    public static String msgCareStreet;
+    public static String msgLeft;
+    public static String msgRight;
+    public static String msgPole;
+    public static String msgDegree;
+    public static String msgTryAgain;
+    public static String msgRecordComplete;
+    public static String msgNoNearBy;
+    public static String msgStopNav;
+    public static String msgStopRec;
+    public static String msgAccessory;
+    public static String msgNoDes;
+    public static String msgNoNearby;
+    public static String msgPrepare;
+    public static String remaining;
+    public static String from;
+    public static String distance;
     public static final String DEVICE_KEY = "device";
 
     public static final int RADIUS = 5; //check lat, lon with target to point++
     public static final int RADIUS_FIRST_POINT = 150; //check lat, lon choose first point
     public static final int RADIUS_ARRIVED = 25; //check is arrived?
+
+    public Tool(Context ctx){
+        mContext = ctx;
+        distance=mContext.getString(R.string.distance);
+        from = mContext.getString(R.string.from);
+        remaining = mContext.getString(R.string.remaining);
+        msgPrepare = mContext.getString(R.string.msgPrepare);
+        msgNoNearBy = mContext.getString(R.string.msgNoNearBy);
+        msgNoDes = mContext.getString(R.string.msgNoDes);
+        msgAccessory = mContext.getString(R.string.msgAccessory);
+        msgStopRec = mContext.getString(R.string.msgStopRec);
+        msgStopNav = mContext.getString(R.string.msgStopNav);
+        msgNotFound =mContext.getString(R.string.msgNotFound);
+        msgNoPath = mContext.getString(R.string.msgNoPath);
+        msgWelcome = mContext.getString(R.string.msgWelcome);
+        msgArrive = mContext.getString(R.string.msgArrive);
+        msgAlready = mContext.getString(R.string.msgAlready);
+        msgNearWhere = mContext.getString(R.string.msgNearWhere);
+        msgPOIWhere = mContext.getString(R.string.msgPOIWhere);
+        msgRecordStart = mContext.getString(R.string.msgRecordStart);
+        msgTurnLeft = mContext.getString(R.string.msgTurnLeft);
+        msgTurnRight = mContext.getString(R.string.msgTurnRight);
+        msgTurnBack = mContext.getString(R.string.msgTurnBack);
+        msgForward = mContext.getString(R.string.msgForward);
+        msgMeter = mContext.getString(R.string.msgMeter);
+        msgCareStreet = mContext.getString(R.string.msgCareStreet);
+        msgLeft = mContext.getString(R.string.msgLeft);
+        msgRight = mContext.getString(R.string.msgRight);
+        msgPole = mContext.getString(R.string.msgPole);
+        msgDegree = mContext.getString(R.string.msgDegree);
+        msgTryAgain = mContext.getString(R.string.msgTryAgain);
+        msgRecordComplete = mContext.getString(R.string.msgRecordComplete);
+        msgNoNearBy = mContext.getString(R.string.msgNoNearBy);
+    }
+
 
     public static double distFrom(double lat1, double lng1, double lat2, double lng2) {
         double earthRadius = 6371000; //meters

@@ -98,10 +98,10 @@ public class Navigation {
         distance_balance = totalDistance(point);
         //distance.setText("เหลือ: " + distance_balance + "เมตร, จาก " + distance_total + Tool.msgMeter);
         ans.add("distance");
-        ans.add("เหลือ: " + distance_balance + "เมตร, จาก " + distance_total + Tool.msgMeter);
+        ans.add(Tool.remaining+" "+ distance_balance + Tool.msgMeter+" "+Tool.from+" " + distance_total + Tool.msgMeter);
 
         ans.add("poi");
-        ans.add(Tool.msgPOIWhere + findPOI() + "ระยะ "+ (int)dist_temp+" เมตร");
+        ans.add(Tool.msgPOIWhere + findPOI() + Tool.distance+" "+ (int)dist_temp+Tool.msgMeter);
 
         if (latlngList.size() > 0 && point < latlngList.size()) {
 
