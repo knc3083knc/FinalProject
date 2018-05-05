@@ -64,7 +64,10 @@ public class NavCamDisActivity extends AppCompatActivity implements
     private static final String TAG = "NavCamDisActivity";
 
     private GoogleApiClient googleApiClient;
-
+    private int angle = 0;
+    private int currentDegree = 0;
+    private double angleMap = 0;
+    private int degree = 0;
     private TextView nearBy;
     private TextView destination;
     private TextView distance;
@@ -162,11 +165,8 @@ public class NavCamDisActivity extends AppCompatActivity implements
 
             SpeakOverview = new ArrayList<String>();
             SpeakOverview.add(getString(R.string.overview));
-            String fword = Tool.msgForward;
-            Log.d(TAG,fword+"aaa");
-            String firstdirection = (String) direction.getText();
-            String[] firstdirec = firstdirection.split(":");
-            SpeakOverview.add(firstdirec[0]);
+
+
             int disFoward = 0;
             String dest = (String) destination.getText();
             ArrayList<String> overview = new ArrayList<String>();
@@ -177,14 +177,20 @@ public class NavCamDisActivity extends AppCompatActivity implements
             first.moveToFirst();
             double lat1 = Double.parseDouble(first.getString(first.getColumnIndex(Database.COL_LAT)));
             double lng1 = Double.parseDouble(first.getString(first.getColumnIndex(Database.COL_LNG)));
-            disFoward = (int) Tool.distFrom(lat, lng, lat1, lng1);
-            if(SpeakOverview.get(1).contains(fword)){
-                SpeakOverview.add("");
-            }
-            else {
-                SpeakOverview.add(getString(R.string.overviewd) + disFoward + Tool.msgMeter);
+            angle = (int)Tool.angleFormNorth(lat,lng,lat1,lng1);
+            currentDegree = degree;
 
-            }
+            Log.d(TAG,"Degree ="+currentDegree+"An");
+            Log.d(TAG,"Angle = "+angle+"An");
+
+            String RealCompass = findCompass(angle,currentDegree);
+            Log.d(TAG,"Compass ="+RealCompass+"An");
+            SpeakOverview.add(RealCompass);
+            currentDegree = angle;
+            disFoward = (int) Tool.distFrom(lat, lng, lat1, lng1);
+            SpeakOverview.add(getString(R.string.overviewd) + disFoward + Tool.msgMeter);
+
+
 
             for (int i = 1; i < overV.path.size(); i++) {
                 String num = overV.path.get(i).toString();
@@ -196,18 +202,14 @@ public class NavCamDisActivity extends AppCompatActivity implements
                     lat1 = Double.parseDouble(temp.getString(temp.getColumnIndex(Database.COL_LAT)));
                     lng1 = Double.parseDouble(temp.getString(temp.getColumnIndex(Database.COL_LNG)));
                     disFoward = (int) Tool.distFrom(lat, lng, lat1, lng1); // ระยะทาง
-                    startpoint = new LatLng(lat1, lng1);
-                    overview = overV.locationChanged(startpoint, dest);//หาทิศ
-                    Log.d(TAG, overview.toString() + "PPP");
-                    SpeakOverview.add(overview.get(0));
-
-                    if(overview.get(0).contains(fword)){
-                        SpeakOverview.add("");
-                    }
-                    else {
-                        SpeakOverview.add(getString(R.string.overviewd) + disFoward + Tool.msgMeter);
-
-                    }
+                    angle = (int)Tool.angleFormNorth(lat,lng,lat1,lng1);
+                    Log.d(TAG,"Degree = "+currentDegree+"An");
+                    Log.d(TAG,"Angle = "+angle+"An");
+                    RealCompass = findCompass(angle,currentDegree);
+                    Log.d(TAG,"Compass"+i+"= "+RealCompass+"An");
+                    SpeakOverview.add(RealCompass);
+                    SpeakOverview.add(getString(R.string.overviewd) + disFoward + Tool.msgMeter);
+                    currentDegree = angle;
 
 
                 }
@@ -219,6 +221,34 @@ public class NavCamDisActivity extends AppCompatActivity implements
             notification(SpeakOverview.toString());
             overV = new OverView(NavCamDisActivity.this);
 
+    }
+    private String findCompass(int angle,int currentDegree) {
+        String ans = "";
+        if (Math.abs(angle - currentDegree) < 20 || Math.abs(angle - currentDegree) > 340) {
+            ans = Tool.msgForward ;
+
+        } else if (Math.abs(angle - currentDegree) > 160 && Math.abs(angle - currentDegree) < 200) {
+            ans = Tool.msgTurnBack;
+
+        } else if (currentDegree > angle && Math.abs(angle - currentDegree) > 180) {
+            ans = Tool.msgTurnRight ;
+
+        } else if (currentDegree < angle && Math.abs(angle - currentDegree) > 180) {
+            ans = Tool.msgTurnLeft;
+
+        } else if (currentDegree > angle) {
+            ans = Tool.msgTurnLeft;
+
+        } else if (currentDegree < angle) {
+            ans = Tool.msgTurnRight;
+
+        }
+        return ans;
+    }
+    public ArrayList<String> sensorChanged(SensorEvent sensorEvent) {
+        degree = Math.round(sensorEvent.values[0]);
+        ArrayList<String> ans = new ArrayList<>();
+        return ans;
     }
 
     private void init() {
@@ -267,6 +297,8 @@ public class NavCamDisActivity extends AppCompatActivity implements
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         ArrayList<String> activity = nav.sensorChanged(sensorEvent);
+        ArrayList<String> test = new ArrayList<String>();
+        test = sensorChanged(sensorEvent);
         doActivity(activity);
     }
 
