@@ -24,7 +24,7 @@
     <Button
         android:id="@+id/delBtn"
         android:layout_width="205dp"
-        android:layout_height="130dp"
+        android:layout_height="150dp"
         android:background="@android:color/holo_purple"
         android:text="@string/delete"
         android:textColor="@color/cast_expanded_controller_text_color"
@@ -36,7 +36,7 @@
     <Button
         android:id="@+id/settingฺBtn"
         android:layout_width="205dp"
-        android:layout_height="130dp"
+        android:layout_height="150dp"
         android:background="@android:color/holo_orange_light"
         android:text="@string/settings"
         android:textColor="@color/cast_expanded_controller_text_color"
@@ -46,8 +46,8 @@
 
     <Button
         android:id="@+id/recBtn"
-        android:layout_width="195dp"
-        android:layout_height="420dp"
+        android:layout_width="205dp"
+        android:layout_height="450dp"
         android:background="@android:color/holo_blue_light"
         android:text="@string/rec"
         android:textColor="@color/cast_expanded_controller_text_color"
@@ -57,8 +57,8 @@
 
     <Button
         android:id="@+id/navBtn"
-        android:layout_width="195dp"
-        android:layout_height="420dp"
+        android:layout_width="205dp"
+        android:layout_height="450dp"
         android:background="@android:color/holo_red_light"
         android:text="@string/nav"
         android:textColor="@color/cast_expanded_controller_text_color"

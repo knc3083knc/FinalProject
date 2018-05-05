@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="version"
-        android:textSize="25sp"/>
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/commit"
@@ -16,7 +16,7 @@
         android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
         android:text="commit"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/developer"
@@ -24,6 +24,6 @@
         android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
         android:text="developer"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
 </LinearLayout>

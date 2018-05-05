@@ -26,6 +26,7 @@
     <string name="record">Record</string>
     <string name="cancel">Cancel</string>
     <string name="keyboard">Keyboard Action</string>
+    <string name="keyboardPOI">Add Point of Interest</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="camoption">Select Cam Option </string>

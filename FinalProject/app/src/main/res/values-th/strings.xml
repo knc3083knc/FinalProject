@@ -26,6 +26,7 @@
     <string name="record">เริ่มการบันทึก</string>
     <string name="cancel">ยกเลิก</string>
     <string name="keyboard">สั่งงานด้วยคีย์บอร์ด</string>
+    <string name="keyboardPOI">บันทึกจุดที่สนใจ</string>
     <string name="yes">ใช่</string>
     <string name="no">ไม่ใช่</string>
     <string name="camoption">หน้าเลือกการตรวจจับวัตถุ</string>

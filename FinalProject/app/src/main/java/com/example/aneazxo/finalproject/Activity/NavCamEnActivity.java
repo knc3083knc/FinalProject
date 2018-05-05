@@ -35,12 +35,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.aneazxo.finalproject.Database.DataModel;
+import com.example.aneazxo.finalproject.Database.Database;
 import com.example.aneazxo.finalproject.ImgProc.ObstructionDetector;
 import com.example.aneazxo.finalproject.ImgProc.PoleDetector;
 import com.example.aneazxo.finalproject.ImgProc.VPDetector;
 import com.example.aneazxo.finalproject.R;
 import com.example.aneazxo.finalproject.core.Debug;
 import com.example.aneazxo.finalproject.core.Navigation;
+import com.example.aneazxo.finalproject.core.OverView;
 import com.example.aneazxo.finalproject.core.Speaker;
 import com.example.aneazxo.finalproject.core.Tool;
 import com.google.android.gms.common.ConnectionResult;
@@ -51,6 +53,7 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.RuntimeRemoteException;
 
 import org.opencv.android.BaseLoaderCallback;
@@ -84,28 +87,33 @@ public class NavCamEnActivity extends AppCompatActivity implements
     private static final String TAG = "NavCamEnActivity";
 
     private GoogleApiClient googleApiClient;
-
+    private int angle = 0;
+    private int current = 0;
+    private double angleMap = 0;
+    private int degree = 0;
     private TextView nearBy;
     private TextView destination;
     private TextView distance;
-
+    private TextView poi;
     private TextView direction;
     private Button stopNav;
+    private Button overView;
 
     private static SensorManager sensorService;
     private Sensor sensor;
     private float currentDegree = 0f;
 
     private CountDownTimer echoTimer;
-
+    private OverView overV;
     private Navigation nav;
     private DataModel model;
     private int deviceSelected = 0;
-
+    private double lat;
+    private double lng;
     //private Speaker speaker;
     private Vibrator vibrator;
     private boolean isExploreByTouchEnabled = false;
-
+    private ArrayList<String> SpeakOverview;
     //camera
     private Camera mCamera;
     private SurfaceView mPreview;
@@ -175,7 +183,12 @@ public class NavCamEnActivity extends AppCompatActivity implements
             startActivity(intent);
             finish();
         }
-
+        overView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findOverview();
+            }
+        });
         stopNav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -194,6 +207,91 @@ public class NavCamEnActivity extends AppCompatActivity implements
             }
         });
     }
+    public void findOverview() {
+
+        SpeakOverview = new ArrayList<String>();
+        SpeakOverview.add(getString(R.string.overview));
+        int disFoward = 0;
+        String dest = (String) destination.getText();
+        ArrayList<String> overview = new ArrayList<String>();
+        LatLng startpoint = new LatLng(lat, lng);
+        overview = overV.locationChanged(startpoint, dest);
+        Log.d(TAG, overview.toString() + "ppp");
+        Cursor first = model.selectWhereId(overV.path.get(0).toString());
+        first.moveToFirst();
+        double lat1 = Double.parseDouble(first.getString(first.getColumnIndex(Database.COL_LAT)));
+        double lng1 = Double.parseDouble(first.getString(first.getColumnIndex(Database.COL_LNG)));
+        angle = (int)Tool.angleFormNorth(lat,lng,lat1,lng1);
+        current = degree;
+
+        Log.d(TAG,"Degree ="+current+"An");
+        Log.d(TAG,"Angle = "+angle+"An");
+
+        String RealCompass = findCompass(angle,current);
+        Log.d(TAG,"Compass ="+RealCompass+"An");
+        SpeakOverview.add(RealCompass);
+        current = angle;
+        disFoward = (int) Tool.distFrom(lat, lng, lat1, lng1);
+        SpeakOverview.add(getString(R.string.overviewd) + disFoward + Tool.msgMeter);
+
+        for (int i = 1; i < overV.path.size(); i++) {
+            String num = overV.path.get(i).toString();
+            Cursor temp = model.selectWhereId(num);
+            temp.moveToFirst();
+            if (!temp.isAfterLast()) {
+                lat = lat1; // สลับตำแหน่ง
+                lng = lng1;
+                lat1 = Double.parseDouble(temp.getString(temp.getColumnIndex(Database.COL_LAT)));
+                lng1 = Double.parseDouble(temp.getString(temp.getColumnIndex(Database.COL_LNG)));
+                disFoward = (int) Tool.distFrom(lat, lng, lat1, lng1); // ระยะทาง
+                angle = (int)Tool.angleFormNorth(lat,lng,lat1,lng1);
+                Log.d(TAG,"Degree = "+current+"An");
+                Log.d(TAG,"Angle = "+angle+"An");
+                RealCompass = findCompass(angle,current);
+                Log.d(TAG,"Compass"+i+"= "+RealCompass+"An");
+                SpeakOverview.add(RealCompass);
+                SpeakOverview.add(getString(R.string.overviewd) + disFoward + Tool.msgMeter);
+                current = angle;
+
+            }
+
+        }
+
+
+        Log.d(TAG, SpeakOverview.toString() + "ppp");
+        notification(SpeakOverview.toString());
+        overV = new OverView(NavCamEnActivity.this);
+
+    }
+    private String findCompass(int angle,int currentDegree) {
+        String ans = "";
+        if (Math.abs(angle - currentDegree) < 20 || Math.abs(angle - currentDegree) > 340) {
+            ans = Tool.msgForward ;
+
+        } else if (Math.abs(angle - currentDegree) > 160 && Math.abs(angle - currentDegree) < 200) {
+            ans = Tool.msgTurnBack;
+
+        } else if (currentDegree > angle && Math.abs(angle - currentDegree) > 180) {
+            ans = Tool.msgTurnRight ;
+
+        } else if (currentDegree < angle && Math.abs(angle - currentDegree) > 180) {
+            ans = Tool.msgTurnLeft;
+
+        } else if (currentDegree > angle) {
+            ans = Tool.msgTurnLeft;
+
+        } else if (currentDegree < angle) {
+            ans = Tool.msgTurnRight;
+
+        }
+        return ans;
+    }
+
+    public ArrayList<String> sensorChanged(SensorEvent sensorEvent) {
+        degree = Math.round(sensorEvent.values[0]);
+        ArrayList<String> ans = new ArrayList<>();
+        return ans;
+    }
 
     private void init() {
         nearBy = (TextView) findViewById(R.id.nearBy);
@@ -201,6 +299,8 @@ public class NavCamEnActivity extends AppCompatActivity implements
         distance = (TextView) findViewById(R.id.distance);
         direction = (TextView) findViewById(R.id.direction);
         stopNav = (Button) findViewById(R.id.stopNavBtn);
+        poi = (TextView) findViewById(R.id.poi);
+        overView = (Button) findViewById(R.id.OverviewBtn);
 
         AccessibilityManager am = (AccessibilityManager) getSystemService(ACCESSIBILITY_SERVICE);
         isExploreByTouchEnabled = am.isTouchExplorationEnabled();
@@ -209,6 +309,7 @@ public class NavCamEnActivity extends AppCompatActivity implements
         model = new DataModel(this);
 
         nav = new Navigation(NavCamEnActivity.this);
+        overV = new OverView(NavCamEnActivity.this);
 
         echoTimer = new CountDownTimer(1000, 1000) {
             @Override
@@ -397,6 +498,8 @@ public class NavCamEnActivity extends AppCompatActivity implements
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         ArrayList<String> activity = nav.sensorChanged(sensorEvent);
+        ArrayList<String> test = new ArrayList<String>();
+        test = sensorChanged(sensorEvent);
         doActivity(activity);
     }
 
@@ -455,6 +558,8 @@ public class NavCamEnActivity extends AppCompatActivity implements
 
     @Override
     public void onLocationChanged(Location location) {
+        lat = location.getLatitude();
+        lng = location.getLongitude();
         if (deviceSelected == 0) {
             ArrayList<String> activity = nav.locationChanged(location, (String) destination.getText());
             doActivity(activity);
@@ -723,6 +828,10 @@ public class NavCamEnActivity extends AppCompatActivity implements
         for (int i = 0; i < activity.size(); i++) {
             //Log.d(TAG, "doActivity: " + activity.get(i));
             switch (activity.get(i)) {
+                case "poi":
+                    i++;
+                    poi.setText(activity.get(i));
+                    break;
                 case "nearby":
                     i++;
                     nearBy.setText(activity.get(i));
