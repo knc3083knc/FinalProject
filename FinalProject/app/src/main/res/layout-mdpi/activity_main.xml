@@ -28,7 +28,7 @@
         android:background="@android:color/holo_purple"
         android:text="@string/delete"
         android:textColor="@color/cast_expanded_controller_text_color"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:visibility="visible"
         app:layout_constraintLeft_toRightOf="@id/guideline13"
         app:layout_constraintTop_toBottomOf="parent" />
@@ -40,7 +40,7 @@
         android:background="@android:color/holo_orange_light"
         android:text="@string/settings"
         android:textColor="@color/cast_expanded_controller_text_color"
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:layout_constraintRight_toLeftOf="@id/guideline13"
         app:layout_constraintTop_toBottomOf="parent" />
 
@@ -51,7 +51,7 @@
         android:background="@android:color/holo_blue_light"
         android:text="@string/rec"
         android:textColor="@color/cast_expanded_controller_text_color"
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:layout_constraintLeft_toRightOf="@id/guideline13"
         app:layout_constraintTop_toBottomOf="@id/guideline" />
 
@@ -62,7 +62,7 @@
         android:background="@android:color/holo_red_light"
         android:text="@string/nav"
         android:textColor="@color/cast_expanded_controller_text_color"
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:layout_constraintRight_toLeftOf="@id/guideline13"
         app:layout_constraintTop_toBottomOf="@id/guideline" />
 

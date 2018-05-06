@@ -4,49 +4,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.aneazxo.finalproject.Activity.NavCamEnActivity">
+    tools:context="com.example.aneazxo.finalproject.Activity.NavCamEnActivity"
+    tools:layout_editor_absoluteY="81dp">
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="310dp"
-        android:layout_height="380dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        android:id="@+id/constraintLayout18"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+        <Button
+            android:id="@+id/OverviewBtn"
+            android:layout_width="320dp"
+            android:layout_height="40dp"
+            android:background="@android:color/holo_green_light"
+            android:text="OverView"
+            android:textColor="?attr/colorBackgroundFloating"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.825" />
 
         <Button
             android:id="@+id/stopNavBtn"
-            android:layout_width="250dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="300dp"
             android:layout_weight="1"
             android:background="@android:color/holo_red_light"
             android:text="@string/stop"
             android:textColor="?attr/colorBackgroundFloating"
-            android:textSize="20sp"
+
+            android:textSize="15sp"
+            app:layout_constraintHorizontal_bias="0.2"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/preview" />
+            app:layout_constraintTop_toBottomOf="@+id/nearBy" />
 
         <SurfaceView
             android:id="@+id/preview"
-            android:layout_width="150dp"
-            android:layout_height="80dp"
+            android:layout_width="105dp"
+            android:layout_height="71dp"
             android:layout_weight="1"
-            tools:layout_editor_absoluteX="159dp"
-            tools:layout_editor_absoluteY="171dp" />
-
+            tools:layout_editor_absoluteX="213dp"
+            tools:layout_editor_absoluteY="0dp" />
+        <TextView
+            android:id="@+id/poi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="15sp"
+            android:layout_weight="1"
+            android:text="POI ="
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@+id/direction"
+            app:layout_constraintLeft_toLeftOf="parent" />
         <TextView
             android:id="@+id/direction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15sp"
             android:layout_weight="1"
             android:text="@string/angle"
-            android:textSize="20sp"
-            tools:layout_editor_absoluteX="16dp"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
 
             app:layout_constraintTop_toBottomOf="@+id/distance" />
 
@@ -55,38 +87,46 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="15dp"
             android:layout_weight="1"
             android:text="@string/m"
-            android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@+id/destination"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/destination" />
 
         <TextView
             android:id="@+id/destination"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_weight="1"
             android:text="@string/destination"
-            android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@+id/nearBy"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nearBy" />
 
         <TextView
             android:id="@+id/nearBy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="300dp"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_weight="1"
             android:text="@string/near"
-            android:textSize="20sp"
-            tools:layout_editor_absoluteY="16dp"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/nearBy"
+            app:layout_constraintGuide_begin="20dp"
+            app:layout_constraintStart_toStartOf="parent" />
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>
