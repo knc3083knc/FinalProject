@@ -164,9 +164,7 @@ public class NavCamDisActivity extends AppCompatActivity implements
     public void findOverview() {
 
             SpeakOverview = new ArrayList<String>();
-            SpeakOverview.add(getString(R.string.overview));
-
-
+            notification(getString(R.string.overview));
             int disFoward = 0;
             String dest = (String) destination.getText();
             ArrayList<String> overview = new ArrayList<String>();
@@ -185,9 +183,11 @@ public class NavCamDisActivity extends AppCompatActivity implements
 
             String RealCompass = findCompass(angle,currentDegree);
             Log.d(TAG,"Compass ="+RealCompass+"An");
+            notification(RealCompass);
             SpeakOverview.add(RealCompass);
             currentDegree = angle;
             disFoward = (int) Tool.distFrom(lat, lng, lat1, lng1);
+            notification(getString(R.string.overviewd) + disFoward + Tool.msgMeter);
             SpeakOverview.add(getString(R.string.overviewd) + disFoward + Tool.msgMeter);
 
 
@@ -208,17 +208,19 @@ public class NavCamDisActivity extends AppCompatActivity implements
                     RealCompass = findCompass(angle,currentDegree);
                     Log.d(TAG,"Compass"+i+"= "+RealCompass+"An");
                     SpeakOverview.add(RealCompass);
+                    notification(RealCompass);
                     SpeakOverview.add(getString(R.string.overviewd) + disFoward + Tool.msgMeter);
+                    notification(getString(R.string.overviewd) + disFoward + Tool.msgMeter);
                     currentDegree = angle;
 
 
                 }
 
             }
-
-
+            notification(getString(R.string.toOverview)+" "+dest);
+            SpeakOverview.add(getString(R.string.toOverview)+" "+dest);
             Log.d(TAG, SpeakOverview.toString() + "ppp");
-            notification(SpeakOverview.toString());
+            /*notification(SpeakOverview.toString());*/
             overV = new OverView(NavCamDisActivity.this);
 
     }
@@ -624,6 +626,7 @@ public class NavCamDisActivity extends AppCompatActivity implements
                     Toast.LENGTH_LONG).show();
         } else {
             Speaker.getInstance(NavCamDisActivity.this).speak(text);
+
         }
     }
 

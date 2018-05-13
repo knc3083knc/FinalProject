@@ -185,6 +185,7 @@ public class RecControlActivity extends FragmentActivity implements
                 finish();*/
                 } else {
                     isStarted = true;
+                    keyboard.setVisibility(View.VISIBLE);
                     stopRec.setText("ยืนยันการบันทึก");
                     notification(Tool.msgRecordStart + destination);
                     if (vibrator != null) {

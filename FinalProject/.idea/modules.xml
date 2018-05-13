@@ -3,11 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FinalProject.iml" filepath="$PROJECT_DIR$/FinalProject.iml" />
-      <module fileurl="file://D:\5710680363-project-8450e65e895a\FinalProject\FinalProject.iml" filepath="D:\5710680363-project-8450e65e895a\FinalProject\FinalProject.iml" />
+      <module fileurl="file://D:/5710680363-project-8450e65e895a/FinalProject/FinalProject.iml" filepath="D:/5710680363-project-8450e65e895a/FinalProject/FinalProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://D:\5710680363-project-8450e65e895a\FinalProject\app\app.iml" filepath="D:\5710680363-project-8450e65e895a\FinalProject\app\app.iml" />
+      <module fileurl="file://D:/5710680363-project-8450e65e895a/FinalProject/app/app.iml" filepath="D:/5710680363-project-8450e65e895a/FinalProject/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/openCVLibrary320/openCVLibrary320.iml" filepath="$PROJECT_DIR$/openCVLibrary320/openCVLibrary320.iml" />
-      <module fileurl="file://D:\5710680363-project-8450e65e895a\FinalProject\openCVLibrary320\openCVLibrary320.iml" filepath="D:\5710680363-project-8450e65e895a\FinalProject\openCVLibrary320\openCVLibrary320.iml" />
+      <module fileurl="file://D:/5710680363-project-8450e65e895a/FinalProject/openCVLibrary320/openCVLibrary320.iml" filepath="D:/5710680363-project-8450e65e895a/FinalProject/openCVLibrary320/openCVLibrary320.iml" />
     </modules>
   </component>
 </project>

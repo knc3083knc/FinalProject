@@ -209,8 +209,7 @@ public class NavCamEnActivity extends AppCompatActivity implements
     }
     public void findOverview() {
 
-        SpeakOverview = new ArrayList<String>();
-        SpeakOverview.add(getString(R.string.overview));
+        notification(getString(R.string.overview));
         int disFoward = 0;
         String dest = (String) destination.getText();
         ArrayList<String> overview = new ArrayList<String>();
@@ -229,10 +228,12 @@ public class NavCamEnActivity extends AppCompatActivity implements
 
         String RealCompass = findCompass(angle,current);
         Log.d(TAG,"Compass ="+RealCompass+"An");
-        SpeakOverview.add(RealCompass);
+        notification(RealCompass);
         current = angle;
         disFoward = (int) Tool.distFrom(lat, lng, lat1, lng1);
-        SpeakOverview.add(getString(R.string.overviewd) + disFoward + Tool.msgMeter);
+        notification(getString(R.string.overviewd) + disFoward + Tool.msgMeter);
+
+
 
         for (int i = 1; i < overV.path.size(); i++) {
             String num = overV.path.get(i).toString();
@@ -249,17 +250,16 @@ public class NavCamEnActivity extends AppCompatActivity implements
                 Log.d(TAG,"Angle = "+angle+"An");
                 RealCompass = findCompass(angle,current);
                 Log.d(TAG,"Compass"+i+"= "+RealCompass+"An");
-                SpeakOverview.add(RealCompass);
-                SpeakOverview.add(getString(R.string.overviewd) + disFoward + Tool.msgMeter);
+                notification(RealCompass);
+                notification(getString(R.string.overviewd) + disFoward + Tool.msgMeter);
                 current = angle;
+
 
             }
 
         }
-
-
+        notification(getString(R.string.toOverview)+" "+dest);
         Log.d(TAG, SpeakOverview.toString() + "ppp");
-        notification(SpeakOverview.toString());
         overV = new OverView(NavCamEnActivity.this);
 
     }
