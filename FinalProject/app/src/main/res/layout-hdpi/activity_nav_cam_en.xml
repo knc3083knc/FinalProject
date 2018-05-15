@@ -20,32 +20,50 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
+            android:id="@+id/OverviewBtn"
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:background="@android:color/holo_green_light"
+            android:text="OverView"
+            android:textColor="?attr/colorBackgroundFloating"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.822" />
+
+        <Button
             android:id="@+id/stopNavBtn"
-            android:layout_width="250dp"
-            android:layout_height="120dp"
-            android:layout_weight="1"
+            android:layout_width="320dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="236dp"
+
             android:background="@android:color/holo_red_light"
             android:text="@string/stop"
             android:textColor="?attr/colorBackgroundFloating"
-            android:textSize="20sp"
+            android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.949" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <SurfaceView
             android:id="@+id/preview"
-            android:layout_width="150dp"
-            android:layout_height="75dp"
-
+            android:layout_width="110dp"
+            android:layout_height="82dp"
             android:layout_weight="1"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.903"
+            app:layout_constraintHorizontal_bias="0.933"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.58" />
+            app:layout_constraintVertical_bias="0.038" />
+
 
         <TextView
             android:id="@+id/direction"
@@ -55,7 +73,7 @@
             android:layout_marginTop="30dp"
             android:layout_weight="1"
             android:text="@string/angle"
-            android:textSize="20sp"
+            android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
 
             app:layout_constraintTop_toBottomOf="@+id/distance" />
@@ -68,7 +86,7 @@
             android:layout_marginTop="28dp"
             android:layout_weight="1"
             android:text="@string/m"
-            android:textSize="20sp"
+            android:textSize="15sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/destination" />
 
@@ -80,22 +98,33 @@
             android:layout_marginTop="30dp"
             android:layout_weight="1"
             android:text="@string/destination"
-            android:textSize="20sp"
+            android:textSize="15sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nearBy" />
 
         <TextView
             android:id="@+id/nearBy"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_marginBottom="276dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_weight="1"
             android:text="@string/near"
-            android:textSize="20sp"
+            android:textSize="15sp"
             app:layout_constraintBottom_toTopOf="@+id/stopNavBtn"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/poi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="80dp"
+            android:layout_weight="1"
+            android:text="POI ="
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/distance" />
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>
