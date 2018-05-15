@@ -19,7 +19,7 @@
 
         <Button
             android:id="@+id/stopNavBtn"
-            android:layout_width="280dp"
+            android:layout_width="320dp"
             android:layout_height="80sp"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
@@ -29,13 +29,28 @@
             android:background="@android:color/holo_red_light"
             android:text="@string/stop"
             android:textColor="?attr/colorBackgroundFloating"
-            android:textSize="20sp"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
 
             app:layout_constraintVertical_bias="0.909" />
+
+        <Button
+            android:id="@+id/OverviewBtn"
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:background="@android:color/holo_green_light"
+            android:text="OverView"
+            android:textColor="?attr/colorBackgroundFloating"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.702" />
 
         <TextView
             android:id="@+id/direction"
@@ -46,7 +61,7 @@
             android:layout_marginTop="30dp"
             android:layout_weight="1"
             android:text="@string/angle"
-            android:textSize="20sp"
+            android:textSize="12sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/distance" />
 
@@ -59,7 +74,7 @@
             android:layout_marginTop="28dp"
             android:layout_weight="1"
             android:text="@string/m"
-            android:textSize="20sp"
+            android:textSize="12sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/destination" />
 
@@ -72,7 +87,7 @@
             android:layout_marginTop="30dp"
             android:layout_weight="1"
             android:text="@string/destination"
-            android:textSize="20sp"
+            android:textSize="12sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nearBy" />
 
@@ -85,9 +100,22 @@
             android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:text="@string/near"
-            android:textSize="20sp"
+            android:textSize="12sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/poi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="72dp"
+            android:layout_weight="1"
+            android:text="POI ="
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/distance" />
     </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
