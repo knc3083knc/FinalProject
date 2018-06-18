@@ -68,6 +68,7 @@ public class NavCamDisActivity extends AppCompatActivity implements
     private int currentDegree = 0;
     private double angleMap = 0;
     private int degree = 0;
+    private String near = "";
     private TextView nearBy;
     private TextView destination;
     private TextView distance;
@@ -161,7 +162,7 @@ public class NavCamDisActivity extends AppCompatActivity implements
         });
     }
 
-    public void findOverview() {
+    public void findOverview() {  /*Overview*/
 
             SpeakOverview = new ArrayList<String>();
             notification(getString(R.string.overview));
@@ -212,7 +213,6 @@ public class NavCamDisActivity extends AppCompatActivity implements
                     SpeakOverview.add(getString(R.string.overviewd) + disFoward + Tool.msgMeter);
                     notification(getString(R.string.overviewd) + disFoward + Tool.msgMeter);
                     currentDegree = angle;
-
 
                 }
 
@@ -428,7 +428,6 @@ public class NavCamDisActivity extends AppCompatActivity implements
             public void onFinish() {
                 notification(nav.getCompassState());
                 Log.d(TAG, "startEchoCompass: " + nav.getCompassState());
-                startEchoCompass();
             }
         };
         echoTimer.start();
@@ -449,7 +448,14 @@ public class NavCamDisActivity extends AppCompatActivity implements
                     break;
                 case "nearby":
                     i++;
+                    Log.d(TAG,"near1 = "+near);
                     nearBy.setText(activity.get(i));
+                    if(!near.equals(nearBy.getText().toString()))
+                    {
+                        notification(activity.get(i));
+                    }
+                    near = nearBy.getText().toString();
+                    Log.d(TAG,"near2 = "+near);
                     break;
                 case "distance":
                     i++;

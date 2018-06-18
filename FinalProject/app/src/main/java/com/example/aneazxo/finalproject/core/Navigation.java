@@ -125,11 +125,7 @@ public class Navigation {
                     ans.add("poi");
                     ans.add(Tool.msgPOIWhere + findPOI());
                 }
-                //Speaker.getInstance(context).speak(Tool.msgNearWhere + findNearby());
-                ans.add("speak");
-                ans.add(Tool.msgNearWhere + findNearby());
-                //delayAndEcho(5000);
-                ans.add("echoCompass");
+
 
                 Log.d(TAG, "onLocationChanged: point=" + point);
             }
@@ -314,12 +310,7 @@ public class Navigation {
         }
         return totalDistance;
     }
-    public int totalDistancePOI (String point) {
-        int totalDistance = 0;
 
-
-        return totalDistance;
-    }
 
     public boolean isArrived (String target) {
         Cursor cursor = model.selectWhereName(target);
