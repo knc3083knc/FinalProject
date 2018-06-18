@@ -28,6 +28,8 @@ public class Navigation {
     private String compassState;
     private String compassStateChange;
     private String state;
+    private int distance =0;
+    private int distance10 =0;
     private int point = 0;
     private int target = -1;
     private CountDownTimer echoTimer;
@@ -99,7 +101,13 @@ public class Navigation {
         //distance.setText("เหลือ: " + distance_balance + "เมตร, จาก " + distance_total + Tool.msgMeter);
         ans.add("distance");
         ans.add(Tool.remaining+" "+ distance_balance + Tool.msgMeter+" "+Tool.from+" " + distance_total + Tool.msgMeter);
-
+        Log.d(TAG,"MAth = "+(Math.abs(distance-distance_balance)==10));
+        if(Math.abs(distance-distance_balance)==10)
+        {
+            distance = distance_balance;
+            ans.add("speak");
+            ans.add(compass(disFoward));
+        }
         ans.add("poi");
         ans.add(Tool.msgPOIWhere + findPOI() + Tool.distance+" "+ (int)dist_temp+Tool.msgMeter);
 
@@ -197,6 +205,7 @@ public class Navigation {
                 angleMap = Tool.angleFormNorth(lat, lon, latlngList.get(0).latitude, latlngList.get(0).longitude);
 
                 distance_total = totalDistance(point);
+                distance = distance_total;
                 //Speaker.getInstance(context).speak(text + " ระยะ " + distance_total + "m");
                 ans = text + " ระยะ " + distance_total + "m";
 /*
@@ -405,9 +414,7 @@ public class Navigation {
             }
 
             //state is not change but dist is change
-            if (compassState.contains(Tool.msgForward) && compassStateChange.contains(Tool.msgForward)) {
-                compassState = compassStateChange;
-            }
+
             //compassState is changed.
             else if (!compassState.equals(compassStateChange)) {
                 //into forward state from another state is must vibrator

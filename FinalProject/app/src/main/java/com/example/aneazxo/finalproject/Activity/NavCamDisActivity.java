@@ -190,9 +190,6 @@ public class NavCamDisActivity extends AppCompatActivity implements
             disFoward = (int) Tool.distFrom(lat, lng, lat1, lng1);
             notification(getString(R.string.overviewd) + disFoward + Tool.msgMeter);
             SpeakOverview.add(getString(R.string.overviewd) + disFoward + Tool.msgMeter);
-
-
-
             for (int i = 1; i < overV.path.size(); i++) {
                 String num = overV.path.get(i).toString();
                 Cursor temp = model.selectWhereId(num);
