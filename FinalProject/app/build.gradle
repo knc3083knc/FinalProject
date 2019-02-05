@@ -10,7 +10,6 @@ android {
         }
     }
     compileSdkVersion 25
-    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.example.aneazxo.finalproject"
         minSdkVersion 17
@@ -50,6 +49,7 @@ android {
 //        }
 //    }
     externalNativeBuild {
+
         ndkBuild {
             path 'Android.mk'
         }
@@ -57,20 +57,20 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile project(':openCVLibrary320')
+    implementation project(':openCVLibrary320')
     //noinspection GradleCompatible
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.google.android.gms:play-services:9.4.0'
-    compile 'com.android.support:multidex:1.0.0'
-    compile 'com.google.android.gms:play-services-location:7.5.0'
-    compile 'com.android.support:design:25.2.0'
-    compile 'com.android.support.constraint:constraint-layout:1.1.0-beta1'
+    implementation 'com.android.support:appcompat-v7:25.1.0'
+    implementation 'com.google.android.gms:play-services:9.4.0'
+    implementation 'com.android.support:multidex:1.0.0'
+    implementation 'com.google.android.gms:play-services-location:7.5.0'
+    implementation 'com.android.support:design:25.2.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta1'
 
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 }
 
 // Map for the version code that gives each ABI a value.

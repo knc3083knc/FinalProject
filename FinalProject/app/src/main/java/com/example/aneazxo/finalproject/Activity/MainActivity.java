@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         del = (Button) findViewById(R.id.delBtn);
 
         AccessibilityManager am = (AccessibilityManager) getSystemService(ACCESSIBILITY_SERVICE);
-        isExploreByTouchEnabled = am.isTouchExplorationEnabled();
+        isExploreByTouchEnabled = am.isTouchExplorationEnabled(); //Talkback เปิดหรือไม่
 
         checkPointdataWrapper();
 

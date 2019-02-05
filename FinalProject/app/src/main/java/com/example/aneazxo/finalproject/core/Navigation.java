@@ -85,7 +85,11 @@ public class Navigation {
 
             isExecuted = true;
 
-            if (!findNearby().equals("error")) {
+            if(findNearby()==null)
+            {
+
+            }
+            else if (!findNearby().equals("error")) {
                 //nearBy.setText(Tool.msgNearWhere + findNearby());
                 ans.add("nearby");
                 ans.add(Tool.msgNearWhere + findNearby());
@@ -289,6 +293,7 @@ public class Navigation {
             double lat2 = Double.parseDouble(tempCursor.getString(tempCursor.getColumnIndex(Database.COL_LAT)));
             double lng2 = Double.parseDouble(tempCursor.getString(tempCursor.getColumnIndex(Database.COL_LNG)));
             String name = tempCursor.getString(tempCursor.getColumnIndex(Database.COL_NAME));
+            Log.d("Nav","NAme :" +name);
             double dist = Tool.distFrom(lat, lon, lat2, lng2);
 
             //debug

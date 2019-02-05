@@ -1,5 +1,9 @@
-<resources>
-    <string name="app_name">Nav TU</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation" >
+
+    <string name="app_name" translatable="false">Nav TU</string>
     <string name="title_activity_maps">MapMap</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCIQ49KB9behfefm8ZcnsD8xI9hoGkjC4M</string>
 
@@ -30,7 +34,6 @@
     <string name="contact">Contact</string>
     <string name="share">Share</string>
     <string name="setup_wizard">Setup Wizard</string>
-    <string name="about">About</string>
     <string name="bluetooth_phrases">turn on bluetooth, bluetooth on</string>
     <string name="bluetooth_title">Bluetooth On</string>
     <string name="bluetooth_off">Bluetooth Off</string>
@@ -59,7 +62,6 @@
     <string name="wifi_off_phrase">turn off wifi</string>
     <string name="no_command_found">No Command found for: </string>
     <string name="note_uninstalled">If you have uninstalled your default note-taking activity, please redo the setup wizard (in the action bar)</string>
-    <string name="cancel">Cancel</string>
     <string name="set">Set</string>
     <string name="flashlight_activated">Flashlight Activated</string>
     <string name="turn_off">Turn Off</string>
@@ -149,7 +151,6 @@
     <string name="return_previous_app_title">Return to Previous App</string>
     <string name="return_previous_app_summary">Return to the previous app after a command (this does not work if you are using Google Now Launcher)</string>
     <string name="commandr_speaking">Commandr Speaking...</string>
-    <string name="stop">Stop</string>
     <string name="unlock_phrases">unlock phone</string>
     <string name="unlock_title">Unlock Phone</string>
     <string name="lock_phrases">lock phone</string>
@@ -238,6 +239,86 @@
     <string name="navigate_waze_title">Navigate with Waze</string>
     <string name="regex">The input above is a regular expression</string>
     <string name="tweet">Tweet</string>
-    <string name="tweet_phrase">Tweet</string>
+    <string name="nav">Navigation</string>
+    <string name="rec">Record Path</string>
+    <string name="settings">Setting</string>
+    <string name="delete">Delete Path</string>
+    <string name="about">About</string>
+    <string name="btgps">Using BlueTooth GPS</string>
+    <string name="nbtgps">Not Using BlueTooth GPS</string>
+    <string name="map">Map Mode</string>
+    <string name="camera">Camera Mode</string>
+    <string name="talkback">Open/Close Talkback</string>
+    <string name="pathing">Pathing</string>
+    <string name="back">Back</string>
+    <string name="detect">Using Object Detection</string>
+    <string name="ndetect">Not Using Object Detection</string>
+    <string name="confirm">Confirm</string>
+    <string name="crecord">Confirm Record</string>
+    <string name="nrecord">New Record</string>
+    <string name="voice">Voice Action</string>
+    <string name="dest">Choose Destination</string>
+    <string name="near">Nearly Place</string>
+    <string name="destination">Destination</string>
+    <string name="m">How Far</string>
+    <string name="angle">Finding Angle</string>
+    <string name="stop">Stop Navigation</string>
+    <string name="record">Record</string>
+    <string name="cancel">Cancel</string>
+    <string name="keyboard">Keyboard Action</string>
+    <string name="keyboardPOI">Add Point of Interest</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="camoption">Select Cam Option </string>
+    <string name="deleteoption">Delete Record </string>
+    <string name="navigation">Navigation </string>
+    <string name="recordact">Record Activity </string>
+    <string name="seldest">Select Destination </string>
+    <string name="setting">Settings</string>
+    <string name="exit">Do you want to exit NavTU </string>
+    <string name="entalk">Do you want to enable Talkback? if not program will terminate.</string>
+    <string name="location1">You not enable GPS,Do you want to enable GPS?</string>
+    <string name="record1">Do you want go to Record Path first?</string>
+    <string name="update">Update</string>
+    <string name="reco">Record</string>
+    <string name="recor">Do you want to record</string>
+    <string name="POI">Do you want to add POI</string>
+    <string name="yn">Yes or No?</string>
+    <string name="msgNotFound">Not Found </string>
+    <string name="msgNoPath">Not Found Path </string>
+    <string name="msgWelcome">Welcome to NAV TU </string>
+    <string name="msgArrive">has arrived </string>
+    <string name="msgAlready">now </string>
+    <string name="msgNearWhere">Near by </string>
+    <string name="msgPOIWhere">has Point of interest is </string>
+    <string name="msgRecordStart">Start Recording </string>
+    <string name="msgTurnBack">Turn back </string>
+    <string name="msgTurnLeft">Turn left </string>
+    <string name="msgTurnRight">Turn right </string>
+    <string name="msgForward">Striaght Forward </string>
+    <string name="msgMeter"> Meter </string>
+    <string name="msgCareStreet">Beaware the obstacle </string>
+    <string name="msgLeft">Left side </string>
+    <string name="msgRight">Right side </string>
+    <string name="msgPole">Pole </string>
+    <string name="msgDegree">Degree </string>
+    <string name="msgTryAgain">Try Again </string>
+    <string name="msgRecordComplete">Complete Record</string>
+    <string name="msgNoNearBy">No Near By </string>
+    <string name="msgStopNav">Stop Navigation </string>
+    <string name="msgStopRec">Stop Recording </string>
+    <string name="msgAccessory">Can not conect with your pairs please Try again </string>
+    <string name="msgNoDes">No Destination.Please Record First </string>
+    <string name="msgNoNearby">NO near by </string>
+    <string name="msgPrepare">Press Record If you are ready</string>
+    <string name="overview">Overview</string>
+    <string name="overviewd">with Distance </string>
+    <string name="remaining">Remaining Distance</string>
+    <string name="from">From</string>
+    <string name="distance">Distance</string>
+    <string name="toOverview">And you should see</string>
+    <string name="wantToGo">Are you want to go</string>
+    <string name="notFound">Not Found</string>
+    <string name="wantRec">Are you want to Record</string>
 
 </resources>

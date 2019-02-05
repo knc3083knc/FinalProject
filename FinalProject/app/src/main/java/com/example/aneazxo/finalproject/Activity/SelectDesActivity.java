@@ -128,9 +128,6 @@ public class SelectDesActivity extends AppCompatActivity {
 
                 }
 
-
-
-
             }
 
         }

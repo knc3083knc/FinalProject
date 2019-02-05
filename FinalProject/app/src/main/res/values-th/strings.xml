@@ -15,6 +15,7 @@
     <string name="detect">ใช้การตรวจจับวัตถุ</string>
     <string name="ndetect">ไม่ใช้การตรวจจับวัตถุ</string>
     <string name="confirm">บันทึก</string>
+    <string name="crecord">ยืนยันการบันทึก</string>
     <string name="nrecord">บันทึกใหม่</string>
     <string name="voice">สั่งงานด้วยเสียง</string>
     <string name="dest">เลือกเส้นทาง</string>
@@ -77,4 +78,7 @@
     <string name="from">จาก</string>
     <string name="distance">ระยะ</string>
     <string name="toOverview">แล้วคุณจะถึงที่หมาย</string>
+    <string name="wantToGo">ต้องการไปที่</string>
+    <string name="notFound">ไม่พบเส้นทาง</string>
+    <string name="wantRec">ต้องการบันทึกเส้นทางสำหรับไปที่</string>
 </resources>

@@ -1,7 +1,6 @@
 package com.example.aneazxo.finalproject.Activity;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -12,7 +11,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.aneazxo.finalproject.Database.DataModel;
-import com.example.aneazxo.finalproject.Database.DataModel1;
 import com.example.aneazxo.finalproject.R;
 import com.example.aneazxo.finalproject.core.Debug;
 import com.example.aneazxo.finalproject.core.Tool;
@@ -38,7 +36,7 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
     private Button confirm;
     private Button cancel;
     private DataModel model;
-    private DataModel1 model1;
+
     private String recordName = "error";
     private ArrayList<LatLng> latlngList = new ArrayList<LatLng>();
     private ArrayList<LatLng> updateLatLngList = new ArrayList<LatLng>();
@@ -49,6 +47,17 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            latlngList = (ArrayList<LatLng>) bundle.get("LatLngList");
+            recordName = bundle.getString("recordName");
+            updateLatLngList = (ArrayList<LatLng>) bundle.get("upLatLngList");
+            updateName = (ArrayList<String>) bundle.get("updateName");
+            for (int i = 0; i < updateLatLngList.size(); i++) {
+                Log.d("WTFF", updateLatLngList.get(i).toString());
+                Log.d("WTFF", updateName.get(i));
+            }
+        }
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN
                 | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_confirm_record);
@@ -173,18 +182,6 @@ public class ConfirmRecordActivity extends FragmentActivity implements OnMapRead
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            latlngList = (ArrayList<LatLng>) bundle.get("LatLngList");
-            recordName = bundle.getString("recordName");
-            updateLatLngList = (ArrayList<LatLng>) bundle.get("upLatLngList");
-            updateName = (ArrayList<String>) bundle.get("updateName");
-            for (int i = 0; i < updateLatLngList.size(); i++) {
-                Log.d(TAG, updateLatLngList.get(i).toString());
-                Log.d(TAG, updateName.get(i));
-            }
-        }
 
         PolylineOptions polylineOptions = new PolylineOptions();
         for (LatLng latlng : latlngList) {

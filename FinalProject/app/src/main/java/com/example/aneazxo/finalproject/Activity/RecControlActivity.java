@@ -26,10 +26,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.aneazxo.finalproject.Database.DataModel;
-import com.example.aneazxo.finalproject.Database.DataModel1;
 import com.example.aneazxo.finalproject.R;
-import com.example.aneazxo.finalproject.core.Debug;
 import com.example.aneazxo.finalproject.core.Speaker;
 import com.example.aneazxo.finalproject.core.Tool;
 import com.google.android.gms.common.ConnectionResult;
@@ -47,7 +44,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -80,10 +76,7 @@ public class RecControlActivity extends FragmentActivity implements
     private String state;
     private String stateup;
 
-    private DataModel1 model1;
-    private DataModel model;
-    private Location location;
-    //private Speaker speaker;
+
     private boolean isExploreByTouchEnabled = false;
     private Vibrator vibrator;
 
@@ -92,6 +85,8 @@ public class RecControlActivity extends FragmentActivity implements
     private String recordName = "error";
     private String recordUpdate = "InterestPoint";
     private ArrayList<LatLng> recordLatLngList;
+
+    //POI
     private ArrayList<String> updateList;
     private ArrayList<LatLng> updateLatLngList;
 
@@ -149,7 +144,7 @@ public class RecControlActivity extends FragmentActivity implements
                     AlertDialog.Builder builder = new AlertDialog.Builder(RecControlActivity.this);
                     builder.setCancelable(true);
                     builder.setTitle(getString(R.string.reco));
-                    builder.setMessage(getString(R.string.recor)+" "+recordName+" "+getString(R.string.yn));
+                    builder.setMessage( getString(R.string.recor)+" "+recordName+" "+getString(R.string.yn));
                     builder.setPositiveButton(getString(R.string.confirm),
                             new DialogInterface.OnClickListener() {
                                 @Override
@@ -186,7 +181,7 @@ public class RecControlActivity extends FragmentActivity implements
                 } else {
                     isStarted = true;
                     keyboard.setVisibility(View.VISIBLE);
-                    stopRec.setText("ยืนยันการบันทึก");
+                    stopRec.setText(getString(R.string.crecord));
                     notification(Tool.msgRecordStart + destination);
                     if (vibrator != null) {
                         // assume has vibrator, vibrate for 500 milliseconds
@@ -280,9 +275,7 @@ public class RecControlActivity extends FragmentActivity implements
         AccessibilityManager am = (AccessibilityManager) getSystemService(ACCESSIBILITY_SERVICE);
         isExploreByTouchEnabled = am.isTouchExplorationEnabled();
 
-        //database
-        model = new DataModel(this);
-        /*model1 = new DataModel1(this);*/
+
 
         lat = 0;
         lon = 0;
@@ -675,7 +668,7 @@ public class RecControlActivity extends FragmentActivity implements
             Toast.makeText(RecControlActivity.this, text,
                     Toast.LENGTH_LONG).show();
         } else {
-            Speaker.getInstance(RecControlActivity.this).speak(text);
+           // Speaker.getInstance(RecControlActivity.this).speak(text);
         }
     }
 }

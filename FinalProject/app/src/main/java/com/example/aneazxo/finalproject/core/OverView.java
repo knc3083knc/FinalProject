@@ -80,7 +80,11 @@ public class OverView {
 
             isExecuted = true;
 
-            if (!findNearby().equals("error")) {
+            if(findNearby()==null)
+            {
+
+            }
+            else if (!findNearby().equals("error")) {
                 //nearBy.setText(Tool.msgNearWhere + findNearby());
             }
             else {

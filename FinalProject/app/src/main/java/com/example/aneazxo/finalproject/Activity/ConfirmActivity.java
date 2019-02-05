@@ -68,7 +68,7 @@ public class ConfirmActivity extends AppCompatActivity {
         DataModel model = new DataModel(ConfirmActivity.this);
         final ArrayList<String> valuesList = model.selectAllTarget();
         if (from == SELECT_DESTINATON){
-            message.setText("ต้องการไปที่" + des + "ใช่หรือไม่");
+            message.setText(getString(R.string.wantToGo)+" " + des + " "+getString(R.string.yn));
 
             buttonConfirm.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -89,7 +89,7 @@ public class ConfirmActivity extends AppCompatActivity {
                                 Intent intent = new Intent(ConfirmActivity.this, SelectDesActivity.class);
                                 startActivity(intent);
                                 finish();
-                                notification("ไม่พบเส้นทาง"+des+"กรุณาลองใหม่อีกครั้ง");
+                                notification(getString(R.string.notFound)+des+getString(R.string.msgTryAgain));
                             }
                         }
 
@@ -109,7 +109,7 @@ public class ConfirmActivity extends AppCompatActivity {
             dialog.show();
 
         } else if (from == RECORD_SOUND) {
-            message.setText("ต้องการบันทึกเส้นทางสำหรับไปที่" + des + "ใช่หรือไม่");
+            message.setText(getString(R.string.recor) + " "+des + " "+getString(R.string.yn));
 
             buttonConfirm.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -131,7 +131,7 @@ public class ConfirmActivity extends AppCompatActivity {
             dialog.setCancelable(false);
             dialog.show();
         } else if (from == DELETE) {
-            message.setText("ต้องการลบ " + des + " ใช่หรือไม่");
+            message.setText(getString(R.string.delete)+ " "+des + " "+getString(R.string.yn));
             final String name = des;
             buttonConfirm.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -156,7 +156,7 @@ public class ConfirmActivity extends AppCompatActivity {
 
             dialog.show();
         } else if (from == RECORD_TXT) {
-            message.setText("ต้องการบันทึกเส้นทางสำหรับไปที่" + des + "ใช่หรือไม่");
+            message.setText(getString(R.string.wantRec) +" " +des + " "+getString(R.string.yn) );
 
             buttonConfirm.setOnClickListener(new View.OnClickListener() {
                 @Override
